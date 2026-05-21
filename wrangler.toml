@@ -1,0 +1,10 @@
+name = "kryphor-web"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+[vars]
+NEXTAUTH_URL = "https://kryphorlabs.com"
+
+# Las demás variables (ANTHROPIC_API_KEY, NEXTAUTH_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD)
+# se configuran en el dashboard de Cloudflare Pages > Settings > Environment variables
