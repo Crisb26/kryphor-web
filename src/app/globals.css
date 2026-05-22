@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Inter:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap');
 @import "tailwindcss";
 
+/* ── Dark mode tokens (default) ─────────────────────────── */
 @theme {
-  --color-bg-deep: #08080F;
-  --color-bg-card: #0D0D1E;
-  --color-graphite: #1A1A2E;
+  --color-bg-deep: #07070E;
+  --color-bg-card: #0D0D1C;
+  --color-graphite: #13132A;
+  --color-border: rgba(255,255,255,0.07);
   --color-cyan: #00D4FF;
   --color-purple: #7C3AED;
   --color-soft-purp: #A855F7;
@@ -16,9 +18,37 @@
   --font-inter: 'Inter', sans-serif;
 }
 
-:root {
-  --background: #08080F;
+/* ── CSS custom properties (runtime-switchable) ─────────── */
+:root, [data-theme="dark"] {
+  --background: #07070E;
   --foreground: #F0F0FF;
+  --surface: #0D0D1C;
+  --surface-2: #13132A;
+  --border-clr: rgba(255,255,255,0.07);
+  --muted-clr: #6B7394;
+  --glass-bg: rgba(13,13,28,0.65);
+  --glass-border: rgba(255,255,255,0.08);
+  --scrollbar-thumb: #7C3AED;
+  --cyan-readable: #00D4FF;
+}
+
+[data-theme="light"] {
+  --background: #F4F4F8;
+  --foreground: #0A0A18;
+  --surface: #ECEDF5;
+  --surface-2: #E2E3EF;
+  --border-clr: rgba(0,0,0,0.09);
+  --muted-clr: #616880;
+  --glass-bg: rgba(255,255,255,0.72);
+  --glass-border: rgba(0,0,0,0.09);
+  --scrollbar-thumb: #7C3AED;
+  --cyan-readable: #0095B5;
+  /* Override Tailwind tokens at runtime */
+  --color-bg-deep: #F4F4F8;
+  --color-bg-card: #ECEDF5;
+  --color-graphite: #E2E3EF;
+  --color-kryphor-white: #0A0A18;
+  --color-muted: #616880;
 }
 
 * {
@@ -37,33 +67,31 @@ body {
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Scrollbar personalizada */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #08080F; }
-::-webkit-scrollbar-thumb { background: #7C3AED; border-radius: 3px; }
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 99px; }
 
-/* Utilidades de glassmorphism */
+/* ── Glass card ─────────────────────────────────────────── */
 .glass {
-  background: rgba(13, 13, 30, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 212, 255, 0.1);
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
 }
 
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-}
+/* ── Glow helpers ───────────────────────────────────────── */
+.glow-cyan  { box-shadow: 0 0 32px rgba(0,212,255,0.25); }
+.glow-purple { box-shadow: 0 0 32px rgba(124,58,237,0.25); }
 
-.glow-purple {
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
-}
-
+/* ── Gradient text ──────────────────────────────────────── */
 .gradient-text {
   background: linear-gradient(135deg, #00D4FF, #7C3AED);
   -webkit-background-clip: text;
@@ -71,8 +99,18 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
-/* Dot grid pattern */
+/* ── Dot grid background ────────────────────────────────── */
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(0, 212, 255, 0.15) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image: radial-gradient(circle, rgba(0,212,255,0.12) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
+
+[data-theme="light"] .dot-grid {
+  background-image: radial-gradient(circle, rgba(124,58,237,0.10) 1px, transparent 1px);
+}
+
+/* ── Surface colors responsive to theme ─────────────────── */
+.bg-surface   { background: var(--surface); }
+.bg-surface-2 { background: var(--surface-2); }
+.border-theme { border-color: var(--border-clr); }
+.text-muted-theme { color: var(--muted-clr); }

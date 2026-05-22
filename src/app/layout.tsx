@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
+import { AppProviders } from "@/lib/providers";
 import "./globals.css";
 
 const poppins = Poppins({
-  weight: ["300", "700"],
+  weight: ["300", "400", "700"],
   subsets: ["latin"],
   variable: "--font-poppins",
 });
 
 const inter = Inter({
-  weight: ["400"],
+  weight: ["400", "500"],
   subsets: ["latin"],
   variable: "--font-inter",
 });
@@ -17,7 +18,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Kryphor Labs — Software · IA · Videojuegos",
   description:
-    "Kryphor Labs es una empresa de desarrollo de software, inteligencia artificial y videojuegos. Creamos tecnología innovadora y accesible.",
+    "Kryphor Labs es una empresa de desarrollo de software, inteligencia artificial y videojuegos fundada en Colombia. Creamos tecnología innovadora y accesible.",
   keywords: ["Kryphor Labs", "software", "inteligencia artificial", "videojuegos", "Colombia", "desarrollo"],
   openGraph: {
     title: "Kryphor Labs",
@@ -27,14 +28,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${poppins.variable} ${inter.variable}`}>
-      <body className="min-h-full antialiased">{children}</body>
+    <html lang="es" className={`${poppins.variable} ${inter.variable}`} data-theme="dark">
+      <head>
+        {/* Anti-FOUC: restore saved theme before paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('kl-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}`,
+          }}
+        />
+      </head>
+      <body className="min-h-full antialiased">
+        <AppProviders>{children}</AppProviders>
+      </body>
     </html>
   );
 }

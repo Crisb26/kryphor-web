@@ -1,146 +1,186 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Gamepad2, BookOpen, Wrench, Bot } from "lucide-react";
+import { Gamepad2, BookOpen, Wrench, Bot, Clock } from "lucide-react";
 import { apps, type App } from "@/data/apps";
-import Badge from "@/components/ui/Badge";
+import { useApp } from "@/lib/providers";
 
-const categoryIcons = {
+const copy = {
+  es: {
+    tag: "Próximamente",
+    title: "Nuestro",
+    highlight: "Ecosistema",
+    sub: "Aplicaciones en desarrollo, construidas con pasión para mejorar tu vida diaria.",
+    filters: {
+      Todos: "Todos",
+      Religioso: "Espiritual",
+      Juego: "Videojuegos",
+      Herramienta: "Herramientas",
+      IA: "Inteligencia Artificial",
+    },
+    status: "En desarrollo",
+    notif: "Notifícame cuando esté lista",
+    soon: "Próximamente disponible",
+  },
+  en: {
+    tag: "Coming Soon",
+    title: "Our",
+    highlight: "Ecosystem",
+    sub: "Applications in development, built with passion to improve your daily life.",
+    filters: {
+      Todos: "All",
+      Religioso: "Spiritual",
+      Juego: "Video Games",
+      Herramienta: "Tools",
+      IA: "Artificial Intelligence",
+    },
+    status: "In development",
+    notif: "Notify me when it's ready",
+    soon: "Coming soon",
+  },
+};
+
+const categoryIcons: Record<App["category"], typeof Gamepad2> = {
   Religioso: BookOpen,
   Juego: Gamepad2,
   Herramienta: Wrench,
   IA: Bot,
 };
 
-const filters = ["Todos", "Religioso", "Juego", "Herramienta", "IA"] as const;
-
-const statusConfig = {
-  disponible: { label: "Disponible", variant: "green" as const },
-  "en-desarrollo": { label: "En Desarrollo", variant: "gray" as const },
-  proximamente: { label: "Próximamente", variant: "purple" as const },
+const categoryColors: Record<App["category"], string> = {
+  Religioso: "#27AE60",
+  Juego: "#E74C3C",
+  Herramienta: "#2E86AB",
+  IA: "#7C3AED",
 };
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
+const filterKeys = ["Todos", "Religioso", "Juego", "Herramienta", "IA"] as const;
 
+const container = { hidden: {}, show: { transition: { staggerChildren: 0.07 } } };
 const item = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  exit: { opacity: 0, y: -10 },
+  exit: { opacity: 0, scale: 0.97 },
 };
 
 export default function AppsPage() {
+  const { lang } = useApp();
+  const c = copy[lang];
   const [filter, setFilter] = useState<string>("Todos");
 
   const filtered = filter === "Todos" ? apps : apps.filter((a) => a.category === filter);
 
   return (
-    <div className="min-h-screen bg-bg-deep pt-24 pb-16">
+    <div className="min-h-screen pt-16" style={{ background: "var(--background)" }}>
+
       {/* Header */}
-      <div className="py-16 text-center border-b border-white/5 bg-bg-card mb-12">
-        <h1 className="font-poppins font-bold text-kryphor-white text-4xl sm:text-6xl mb-4">
-          Nuestras <span className="gradient-text">Apps</span>
-        </h1>
-        <p className="text-muted font-inter max-w-xl mx-auto">
-          Cada aplicación es una historia de innovación, pasión y propósito.
-        </p>
+      <div className="py-24 text-center border-b" style={{ borderColor: "var(--border-clr)", background: "var(--surface)" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="inline-block text-xs font-poppins font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-6"
+            style={{ color: "#7C3AED", background: "rgba(124,58,237,0.12)" }}>
+            {c.tag}
+          </span>
+          <h1 className="font-poppins font-bold text-4xl sm:text-6xl mb-4" style={{ color: "var(--foreground)" }}>
+            {c.title} <span className="gradient-text">{c.highlight}</span>
+          </h1>
+          <p className="font-inter max-w-xl mx-auto" style={{ color: "var(--muted-clr)" }}>
+            {c.sub}
+          </p>
+        </motion.div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Filtros */}
-        <div className="flex flex-wrap gap-3 justify-center mb-12">
-          {filters.map((f) => (
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16">
+
+        {/* Category filters */}
+        <div className="flex flex-wrap gap-2 justify-center mb-14">
+          {filterKeys.map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-5 py-2 rounded-xl text-sm font-poppins font-bold transition-all duration-200 ${
+              className="px-5 py-2 rounded-full text-sm font-poppins font-bold transition-all duration-200"
+              style={
                 filter === f
-                  ? "bg-gradient-to-r from-cyan to-purple text-white shadow-lg"
-                  : "glass text-muted hover:text-kryphor-white border border-white/10"
-              }`}
+                  ? { background: "linear-gradient(135deg, #00D4FF, #7C3AED)", color: "#fff" }
+                  : { background: "var(--glass-bg)", color: "var(--muted-clr)", border: "1px solid var(--border-clr)" }
+              }
             >
-              {f}
+              {c.filters[f as keyof typeof c.filters]}
             </button>
           ))}
         </div>
 
-        {/* Grid */}
+        {/* App grid */}
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-5"
         >
           <AnimatePresence mode="popLayout">
             {filtered.map((app) => {
               const CatIcon = categoryIcons[app.category];
-              const status = statusConfig[app.status];
+              const color = app.color || categoryColors[app.category];
 
               return (
                 <motion.div
                   key={app.id}
                   variants={item}
                   layout
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  transition={{ duration: 0.2 }}
-                  className="glass rounded-2xl overflow-hidden group"
-                  style={{ border: `1px solid ${app.color}25` }}
+                  className="glass rounded-3xl overflow-hidden"
+                  style={{ border: `1px solid ${color}20` }}
                 >
-                  {/* Color bar */}
-                  <div className="h-1" style={{ background: `linear-gradient(90deg, ${app.color}, transparent)` }} />
+                  {/* Top accent bar */}
+                  <div className="h-0.5" style={{ background: `linear-gradient(90deg, ${color}, transparent)` }} />
 
-                  <div className="p-6">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0"
-                          style={{ background: `${app.color}20` }}
-                        >
+                  <div className="p-7">
+                    {/* Header row */}
+                    <div className="flex items-start justify-between mb-5">
+                      <div className="flex items-center gap-4">
+                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0"
+                          style={{ background: `${color}18` }}>
                           {app.icon}
                         </div>
                         <div>
-                          <h3 className="font-poppins font-bold text-kryphor-white text-lg">{app.name}</h3>
-                          <p className="text-muted text-sm">{app.tagline}</p>
+                          <h3 className="font-poppins font-bold text-base" style={{ color: "var(--foreground)" }}>
+                            {app.name}
+                          </h3>
+                          <p className="font-inter text-sm mt-0.5" style={{ color: "var(--muted-clr)" }}>
+                            {app.tagline}
+                          </p>
                         </div>
                       </div>
-                      <Badge variant={status.variant}>{status.label}</Badge>
+                      {/* Category chip */}
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-poppins font-bold flex-shrink-0"
+                        style={{ background: `${categoryColors[app.category]}15`, color: categoryColors[app.category] }}>
+                        <CatIcon size={10} />
+                        {c.filters[app.category as keyof typeof c.filters]}
+                      </div>
                     </div>
 
-                    <p className="text-muted font-inter text-sm leading-relaxed mb-5">{app.description}</p>
+                    <p className="font-inter text-sm leading-relaxed mb-5" style={{ color: "var(--muted-clr)" }}>
+                      {app.description}
+                    </p>
 
                     {/* Features */}
-                    <div className="flex flex-wrap gap-2 mb-5">
+                    <div className="flex flex-wrap gap-2 mb-6">
                       {app.features.map((f) => (
-                        <span
-                          key={f}
-                          className="text-xs px-3 py-1 rounded-lg font-inter"
-                          style={{ background: `${app.color}15`, color: app.color }}
-                        >
+                        <span key={f} className="text-xs px-3 py-1 rounded-lg font-inter"
+                          style={{ background: `${color}12`, color: color }}>
                           {f}
                         </span>
                       ))}
                     </div>
 
                     {/* Footer */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <CatIcon size={14} className="text-muted" />
-                        <span className="text-muted text-xs">{app.category}</span>
-                      </div>
-                      {app.playStoreUrl && (
-                        <a
-                          href={app.playStoreUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-bold text-cyan hover:text-kryphor-white transition-colors"
-                        >
-                          <ExternalLink size={12} />
-                          Play Store
-                        </a>
-                      )}
+                    <div className="flex items-center gap-2 pt-4 border-t" style={{ borderColor: "var(--border-clr)" }}>
+                      <Clock size={12} style={{ color: "var(--muted-clr)" }} />
+                      <span className="text-xs font-inter" style={{ color: "var(--muted-clr)" }}>
+                        {c.soon}
+                      </span>
                     </div>
                   </div>
                 </motion.div>
