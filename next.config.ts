@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   images: {
     domains: [],
   },
-  serverExternalPackages: ["@anthropic-ai/sdk"],
   eslint: {
     ignoreDuringBuilds: true,
   },
