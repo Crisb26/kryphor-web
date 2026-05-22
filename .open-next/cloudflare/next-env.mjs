@@ -1,3 +1,0 @@
-export const production = {"NEXTAUTH_SECRET":"kryphor_labs_secret_2026_ultra_secure_key","NEXTAUTH_URL":"http://localhost:3000","ADMIN_EMAIL":"kryphorlabs@gmail.com","ADMIN_PASSWORD":"KryphorAdmin2026!","ANTHROPIC_API_KEY":"sk-ant-PEGA_AQUI_TU_KEY_DE_console.anthropic.com","DATABASE_URL":"file:./prisma/dev.db"};
-export const development = {"NEXTAUTH_SECRET":"kryphor_labs_secret_2026_ultra_secure_key","NEXTAUTH_URL":"http://localhost:3000","ADMIN_EMAIL":"kryphorlabs@gmail.com","ADMIN_PASSWORD":"KryphorAdmin2026!","ANTHROPIC_API_KEY":"sk-ant-PEGA_AQUI_TU_KEY_DE_console.anthropic.com","DATABASE_URL":"file:./prisma/dev.db"};
-export const test = {};

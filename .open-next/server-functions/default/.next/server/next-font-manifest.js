@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/home/cristopher/Proyectos/kryphor-web/src/app/layout":["static/media/56da557e531d1081-s.p.woff2","static/media/b957ea75a84b6ea7-s.p.woff2","static/media/4c285fdca692ea22-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
