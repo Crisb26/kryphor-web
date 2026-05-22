@@ -1,0 +1,20 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/betho/route": "/api/betho",
+  "/api/contact/route": "/api/contact",
+  "/favicon.ico/route": "/favicon.ico",
+  "/api/auth/[...nextauth]/route": "/api/auth/[...nextauth]",
+  "/page": "/",
+  "/(admin)/admin/apps/page": "/admin/apps",
+  "/(admin)/admin/betho/page": "/admin/betho",
+  "/(admin)/admin/settings/page": "/admin/settings",
+  "/(admin)/login/page": "/login",
+  "/(admin)/admin/page": "/admin",
+  "/(public)/apps/page": "/apps",
+  "/(public)/contact/page": "/contact",
+  "/(public)/page": "/",
+  "/(public)/privacy/page": "/privacy",
+  "/(public)/about/page": "/about",
+  "/(public)/betho/page": "/betho",
+  "/(public)/terms/page": "/terms"
+}
