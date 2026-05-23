@@ -4,7 +4,7 @@ import { AppProviders } from "@/lib/providers";
 import "./globals.css";
 
 const poppins = Poppins({
-  weight: ["300", "400", "700"],
+  weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
   variable: "--font-poppins",
 });
@@ -16,13 +16,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kryphor Labs — Software · IA · Videojuegos",
+  title: "Kryphor Labs — Software · Videojuegos",
   description:
-    "Kryphor Labs es una empresa de desarrollo de software, inteligencia artificial y videojuegos fundada en Colombia. Creamos tecnología innovadora y accesible.",
-  keywords: ["Kryphor Labs", "software", "inteligencia artificial", "videojuegos", "Colombia", "desarrollo"],
+    "Kryphor Labs es un estudio de desarrollo de software independiente. Creamos videojuegos, aplicaciones y experiencias digitales con propósito y calidad.",
+  keywords: ["Kryphor Labs", "software", "videojuegos", "desarrollo", "estudio independiente"],
   openGraph: {
     title: "Kryphor Labs",
-    description: "Software · Inteligencia Artificial · Videojuegos · Innovación",
+    description: "Software independiente construido con propósito.",
     type: "website",
     locale: "es_CO",
   },

@@ -14,10 +14,10 @@ const links = {
       { label: "Privacidad", href: "/privacy" },
       { label: "Términos",   href: "/terms" },
     ],
-    navTitle: "Navegación",
-    legalTitle: "Legal",
-    tagline: "Software independiente construido con propósito.",
-    rights: "Todos los derechos reservados.",
+    navTitle:    "Navegación",
+    legalTitle:  "Legal",
+    tagline:     "Software independiente construido con propósito.",
+    rights:      "Todos los derechos reservados.",
   },
   en: {
     nav: [
@@ -30,10 +30,10 @@ const links = {
       { label: "Privacy", href: "/privacy" },
       { label: "Terms",   href: "/terms" },
     ],
-    navTitle: "Navigation",
-    legalTitle: "Legal",
-    tagline: "Independent software built with purpose.",
-    rights: "All rights reserved.",
+    navTitle:    "Navigation",
+    legalTitle:  "Legal",
+    tagline:     "Independent software built with purpose.",
+    rights:      "All rights reserved.",
   },
 };
 
@@ -43,11 +43,12 @@ export default function Footer() {
 
   return (
     <footer className="border-t" style={{ background: "var(--bg-2)", borderColor: "var(--border)" }}>
-      <div className="max-w-5xl mx-auto px-6 sm:px-10 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+      <div className="max-w-5xl mx-auto px-8 sm:px-12 py-16">
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-14">
 
           {/* Brand */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-5">
             <a href="/">
               <img
                 src={theme === "light" ? "/logos/kryphor_logo_light.png" : "/logos/kryphor_logo_transparent.png"}
@@ -55,12 +56,11 @@ export default function Footer() {
                 className="h-7 w-auto object-contain"
               />
             </a>
-            <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+            <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
               {c.tagline}
             </p>
-            <a
-              href="mailto:kryphorlabs@gmail.com"
-              className="inline-flex items-center gap-2 text-sm font-inter transition-colors"
+            <a href="mailto:kryphorlabs@gmail.com"
+              className="inline-flex items-center gap-2 text-sm font-inter transition-colors w-fit"
               style={{ color: "var(--fg-muted)" }}
               onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
               onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}
@@ -72,14 +72,15 @@ export default function Footer() {
 
           {/* Nav */}
           <div>
-            <h4 className="font-poppins font-semibold text-xs tracking-widest uppercase mb-5"
+            <h4 className="font-poppins font-semibold text-xs tracking-widest uppercase mb-6"
               style={{ color: "var(--fg)" }}>
               {c.navTitle}
             </h4>
-            <ul className="space-y-3">
-              {c.nav.map((link) => (
+            <ul className="space-y-4">
+              {c.nav.map(link => (
                 <li key={link.href}>
-                  <a href={link.href} className="font-inter text-sm transition-colors"
+                  <a href={link.href}
+                    className="font-inter text-sm transition-colors"
                     style={{ color: "var(--fg-muted)" }}
                     onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
                     onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}>
@@ -92,14 +93,15 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="font-poppins font-semibold text-xs tracking-widest uppercase mb-5"
+            <h4 className="font-poppins font-semibold text-xs tracking-widest uppercase mb-6"
               style={{ color: "var(--fg)" }}>
               {c.legalTitle}
             </h4>
-            <ul className="space-y-3">
-              {c.legal.map((link) => (
+            <ul className="space-y-4">
+              {c.legal.map(link => (
                 <li key={link.href}>
-                  <a href={link.href} className="font-inter text-sm transition-colors"
+                  <a href={link.href}
+                    className="font-inter text-sm transition-colors"
                     style={{ color: "var(--fg-muted)" }}
                     onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
                     onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}>
@@ -111,11 +113,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t pt-6 text-center" style={{ borderColor: "var(--border)" }}>
+        <div className="border-t pt-8 text-center" style={{ borderColor: "var(--border)" }}>
           <p className="font-inter text-xs" style={{ color: "var(--fg-muted)" }}>
             © 2026 Kryphor Labs® — {c.rights}
           </p>
         </div>
+
       </div>
     </footer>
   );

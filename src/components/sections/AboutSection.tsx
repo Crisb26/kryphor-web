@@ -38,52 +38,54 @@ export default function AboutSection() {
   const c = copy[lang];
 
   return (
-    <section className="py-36" style={{ background: "var(--bg)" }}>
-      <div className="max-w-5xl mx-auto px-6 sm:px-10">
+    <section className="py-40" style={{ background: "var(--bg)" }}>
+      <div className="max-w-5xl mx-auto px-8 sm:px-12">
 
-        {/* Top */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 items-start">
+        {/* Top grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-28 items-start">
+
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
+            initial={{ opacity: 0, x: -28 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.65 }}
+            transition={{ duration: 0.7 }}
           >
-            <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-4"
+            <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-5"
               style={{ color: "var(--accent)" }}>
               {c.eyebrow}
             </p>
-            <h2 className="font-poppins font-bold text-3xl sm:text-4xl leading-tight mb-6"
-              style={{ color: "var(--fg)" }}>
+            <h2 className="font-poppins font-bold leading-tight mb-8"
+              style={{ fontSize: "clamp(30px, 4vw, 48px)", color: "var(--fg)" }}>
               {c.title}
             </h2>
-            <p className="font-inter text-base leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+            <p className="font-inter text-base sm:text-lg leading-relaxed"
+              style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
               {c.story}
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
+            initial={{ opacity: 0, x: 28 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.65, delay: 0.1 }}
-            className="space-y-4"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="space-y-5"
           >
-            <div className="rounded-2xl p-7" style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
-              <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-3"
+            <div className="rounded-2xl p-8" style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
+              <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-4"
                 style={{ color: "var(--accent)" }}>
                 {c.misionTitle}
               </p>
-              <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+              <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
                 {c.mision}
               </p>
             </div>
-            <div className="rounded-2xl p-7" style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
-              <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-3"
+            <div className="rounded-2xl p-8" style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
+              <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-4"
                 style={{ color: "var(--accent-b)" }}>
                 {c.visionTitle}
               </p>
-              <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+              <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
                 {c.vision}
               </p>
             </div>
@@ -91,26 +93,29 @@ export default function AboutSection() {
         </div>
 
         {/* Values */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {c.values.map(({ title, body }, i) => (
             <motion.div key={title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              whileHover={{ y: -4 }}
-              className="rounded-2xl p-7"
-              style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
-              <div className="w-8 h-0.5 mb-5 rounded-full" style={{ background: "linear-gradient(90deg, var(--accent), var(--accent-b))" }} />
-              <h4 className="font-poppins font-semibold text-sm mb-3" style={{ color: "var(--fg)" }}>
+              transition={{ delay: i * 0.12, duration: 0.55 }}
+              whileHover={{ y: -6 }}
+              className="rounded-2xl p-8 card-hover"
+              style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}
+            >
+              <div className="w-10 h-0.5 mb-6 rounded-full"
+                style={{ background: "linear-gradient(90deg, var(--accent), var(--accent-b))" }} />
+              <h4 className="font-poppins font-semibold text-sm mb-4" style={{ color: "var(--fg)" }}>
                 {title}
               </h4>
-              <p className="font-inter text-xs leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+              <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
                 {body}
               </p>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

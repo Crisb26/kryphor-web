@@ -25,7 +25,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 30);
+    const fn = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
@@ -34,19 +34,20 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -60, opacity: 0 }}
+      initial={{ y: -56, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.55, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
         background: scrolled ? "var(--glass)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
+        backdropFilter: scrolled ? "blur(24px)" : "none",
         borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-10">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-5xl mx-auto px-8 sm:px-12">
+        <div className="flex items-center justify-between h-18 py-4">
 
+          {/* Logo */}
           <a href="/" className="group flex-shrink-0">
             <img
               src={theme === "light" ? "/logos/kryphor_logo_light.png" : "/logos/kryphor_logo_transparent.png"}
@@ -55,10 +56,11 @@ export default function Navbar() {
             />
           </a>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-10">
+            {navLinks.map(link => (
               <a key={link.href} href={link.href}
-                className="nav-link font-inter text-sm transition-colors duration-150 pb-px"
+                className="nav-link font-inter text-sm transition-colors duration-150"
                 style={{ color: "var(--fg-muted)" }}
                 onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
                 onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}>
@@ -67,50 +69,64 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="flex items-center gap-1.5">
-            <IconBtn onClick={toggleLang} title={lang === "es" ? "English" : "Español"}>
+          {/* Controls */}
+          <div className="flex items-center gap-2">
+            <CtrlBtn onClick={toggleLang} title={lang === "es" ? "English" : "Español"}>
               <Globe size={13} />
               <span className="text-xs font-bold">{lang === "es" ? "EN" : "ES"}</span>
-            </IconBtn>
-            <IconBtn onClick={toggleTheme} title={theme === "dark" ? "Modo claro" : "Modo oscuro"}>
+            </CtrlBtn>
+            <CtrlBtn onClick={toggleTheme} title={theme === "dark" ? "Modo claro" : "Dark mode"}>
               {theme === "dark" ? <Sun size={13} /> : <Moon size={13} />}
-            </IconBtn>
-            <a href="/login" className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs border transition-colors"
-              style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}>
-              <Lock size={11} /> Admin
+            </CtrlBtn>
+            <a href="/login"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs border font-inter transition-colors"
+              style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}>
+              <Lock size={11} />
+              Admin
             </a>
-            <button className="md:hidden p-1.5" style={{ color: "var(--fg-muted)" }} onClick={() => setOpen(!open)}>
+            <button className="md:hidden p-1.5 transition-colors"
+              style={{ color: "var(--fg-muted)" }}
+              onClick={() => setOpen(!open)}>
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
       </div>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }} className="md:hidden overflow-hidden"
-            style={{ borderTop: "1px solid var(--border)", background: "var(--glass)" }}>
-            <div className="max-w-6xl mx-auto px-6 py-4 space-y-1">
-              {navLinks.map((link) => (
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden overflow-hidden"
+            style={{ borderTop: "1px solid var(--border)", background: "var(--glass)" }}
+          >
+            <div className="max-w-5xl mx-auto px-8 py-5 space-y-1">
+              {navLinks.map(link => (
                 <a key={link.href} href={link.href} onClick={() => setOpen(false)}
-                  className="block py-3 text-sm font-inter border-b"
+                  className="block py-3.5 text-sm font-inter border-b"
                   style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}>
                   {link.label}
                 </a>
               ))}
-              <div className="flex gap-2 pt-3">
-                <button onClick={toggleTheme} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs border"
+              <div className="flex gap-2 pt-4">
+                <button onClick={toggleTheme}
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs border font-inter"
                   style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}>
                   {theme === "dark" ? <><Sun size={12} /> Modo claro</> : <><Moon size={12} /> Modo oscuro</>}
                 </button>
-                <button onClick={toggleLang} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs border"
+                <button onClick={toggleLang}
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs border font-inter"
                   style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}>
                   <Globe size={12} /> {lang === "es" ? "English" : "Español"}
                 </button>
               </div>
-              <a href="/login" className="flex items-center gap-2 py-3 text-sm font-inter"
+              <a href="/login"
+                className="flex items-center gap-2 py-3.5 text-sm font-inter"
                 style={{ color: "var(--fg-muted)" }}>
                 <Lock size={13} /> Admin
               </a>
@@ -122,11 +138,13 @@ export default function Navbar() {
   );
 }
 
-function IconBtn({ children, onClick, title }: { children: React.ReactNode; onClick: () => void; title?: string }) {
+function CtrlBtn({ children, onClick, title }: { children: React.ReactNode; onClick: () => void; title?: string }) {
   return (
     <button onClick={onClick} title={title}
-      className="hidden md:flex items-center gap-1 px-2.5 py-1.5 rounded-lg border text-xs transition-colors"
-      style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}>
+      className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-inter transition-colors"
+      style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}
+      onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
+      onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}>
       {children}
     </button>
   );

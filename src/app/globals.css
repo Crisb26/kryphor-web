@@ -2,54 +2,42 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-deep:      #060608;
-  --color-bg-card:      #0E0E12;
-  --color-graphite:     #141418;
-  --color-cyan:         #38BDF8;
-  --color-purple:       #818CF8;
-  --color-soft-purp:    #A5B4FC;
-  --color-gold:         #C9A84C;
-  --color-kryphor-white:#EBEBEB;
-  --color-muted:        #71717A;
   --font-poppins: 'Poppins', sans-serif;
   --font-inter:   'Inter',   sans-serif;
 }
 
+/* ── Dark (default) ──────────────────────────────────────────── */
 :root, [data-theme="dark"] {
-  --bg:           #060608;
-  --bg-2:         #0E0E12;
-  --bg-3:         #141418;
-  --fg:           #EBEBEB;
-  --fg-muted:     #71717A;
-  --border:       rgba(255,255,255,0.06);
-  --glass:        rgba(14,14,18,0.82);
-  --accent:       #38BDF8;
-  --accent-b:     #818CF8;
-  --radius-card:  1.25rem;
+  --bg:        #06060A;
+  --bg-2:      #0D0D14;
+  --bg-3:      #13131C;
+  --fg:        #F0F0F5;
+  --fg-muted:  #6B6B80;
+  --border:    rgba(255,255,255,0.06);
+  --glass:     rgba(13,13,20,0.85);
+  --accent:    #38BDF8;
+  --accent-b:  #818CF8;
+  --glow-a:    rgba(56,189,248,0.15);
+  --glow-b:    rgba(129,140,248,0.15);
 }
 
+/* ── Light ───────────────────────────────────────────────────── */
 [data-theme="light"] {
-  --bg:           #F7F7F9;
-  --bg-2:         #EEEEF2;
-  --bg-3:         #E5E5EB;
-  --fg:           #0D0D12;
-  --fg-muted:     #5A5A6A;
-  --border:       rgba(0,0,0,0.07);
-  --glass:        rgba(255,255,255,0.80);
-  --accent:       #0284C7;
-  --accent-b:     #6366F1;
-  --color-bg-deep:      #F7F7F9;
-  --color-bg-card:      #EEEEF2;
-  --color-graphite:     #E5E5EB;
-  --color-kryphor-white:#0D0D12;
-  --color-muted:        #5A5A6A;
-  --color-cyan:         #0284C7;
-  --color-purple:       #6366F1;
-  --color-soft-purp:    #818CF8;
+  --bg:        #F5F5FA;
+  --bg-2:      #EBEBF2;
+  --bg-3:      #E2E2EC;
+  --fg:        #0A0A12;
+  --fg-muted:  #555568;
+  --border:    rgba(0,0,0,0.07);
+  --glass:     rgba(255,255,255,0.82);
+  --accent:    #0284C7;
+  --accent-b:  #6366F1;
+  --glow-a:    rgba(2,132,199,0.10);
+  --glow-b:    rgba(99,102,241,0.10);
 }
 
+/* ── Reset ───────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -59,24 +47,17 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.25s, color 0.25s;
 }
 
 h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
 
-::-webkit-scrollbar { width: 4px; }
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--accent-b); border-radius: 99px; }
 
-/* Glass */
-.glass {
-  background: var(--glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-}
-
-/* Gradient text */
+/* ── Utilities ───────────────────────────────────────────────── */
 .gradient-text {
   background: linear-gradient(135deg, var(--accent), var(--accent-b));
   -webkit-background-clip: text;
@@ -84,12 +65,17 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
   background-clip: text;
 }
 
-/* Grid pattern */
-.grid-bg {
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 60px 60px;
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+/* Subtle dot grid for hero */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* Nav hover underline */
@@ -97,9 +83,18 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -3px; left: 50%;
-  width: 0; height: 1px;
+  bottom: -4px; left: 50%;
+  width: 0; height: 1.5px;
   background: linear-gradient(90deg, var(--accent), var(--accent-b));
   transition: width .22s ease, left .22s ease;
+  border-radius: 99px;
 }
 .nav-link:hover::after { width: 100%; left: 0; }
+
+/* Card glow on hover */
+.card-hover {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-hover:hover {
+  box-shadow: 0 0 32px var(--glow-a);
+}
