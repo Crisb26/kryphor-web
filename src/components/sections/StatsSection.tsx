@@ -2,47 +2,38 @@
 import { motion } from "framer-motion";
 import { useApp } from "@/lib/providers";
 
-const stats = {
+const data = {
   es: [
-    { value: "2026",  label: "Año de fundación" },
-    { value: "5+",    label: "Aplicaciones en desarrollo" },
-    { value: "2",     label: "Géneros de apps" },
-    { value: "100%",  label: "Software independiente" },
+    { n: "2026",  l: "Fundación" },
+    { n: "5+",    l: "Apps activas" },
+    { n: "2",     l: "Categorías" },
+    { n: "100%",  l: "Independiente" },
   ],
   en: [
-    { value: "2026",  label: "Founded" },
-    { value: "5+",    label: "Apps in development" },
-    { value: "2",     label: "App categories" },
-    { value: "100%",  label: "Independent software" },
+    { n: "2026",  l: "Founded" },
+    { n: "5+",    l: "Active apps" },
+    { n: "2",     l: "Categories" },
+    { n: "100%",  l: "Independent" },
   ],
 };
 
 export default function StatsSection() {
   const { lang } = useApp();
-  const items = stats[lang];
+  const items = data[lang];
 
   return (
-    <section className="py-16" style={{ background: "var(--surface)" }}>
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
-        <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0"
-          style={{ border: "1px solid var(--border-clr)", borderRadius: "1rem", overflow: "hidden",
-            "--tw-divide-color": "var(--border-clr)" } as React.CSSProperties}>
-          {items.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.07 }}
-              className="px-8 py-10 text-center"
-              style={{ background: "var(--glass-bg)", borderColor: "var(--border-clr)" }}
-            >
-              <div className="font-poppins font-bold text-4xl sm:text-5xl gradient-text mb-2">
-                {stat.value}
-              </div>
-              <p className="font-inter text-xs sm:text-sm" style={{ color: "var(--muted-clr)" }}>
-                {stat.label}
-              </p>
+    <section className="py-14 border-y" style={{ borderColor: "var(--border)", background: "var(--bg-2)" }}>
+      <div className="max-w-5xl mx-auto px-6 sm:px-10">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px"
+          style={{ background: "var(--border)", borderRadius: "1rem", overflow: "hidden" }}>
+          {items.map(({ n, l }, i) => (
+            <motion.div key={l}
+              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+              className="flex flex-col items-center justify-center py-10 px-6"
+              style={{ background: "var(--bg-2)" }}>
+              <span className="font-poppins font-bold text-3xl sm:text-4xl gradient-text mb-1">{n}</span>
+              <span className="font-inter text-xs tracking-wide" style={{ color: "var(--fg-muted)" }}>{l}</span>
             </motion.div>
           ))}
         </div>

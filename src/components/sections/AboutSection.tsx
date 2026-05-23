@@ -1,141 +1,115 @@
 "use client";
 import { motion } from "framer-motion";
-import { Target, Eye, Lightbulb, Star, Globe, Heart } from "lucide-react";
 import { useApp } from "@/lib/providers";
 
 const copy = {
   es: {
-    title: "Sobre",
-    highlight: "Kryphor Labs",
-    mision: {
-      label: "Misión",
-      text: "Crear tecnología que mejore la vida de las personas, desde aplicaciones móviles hasta videojuegos, con calidad, propósito e impacto real. Cada producto que construimos existe para resolver algo que importa.",
-    },
-    vision: {
-      label: "Visión",
-      text: "Ser una referencia latinoamericana en desarrollo de software independiente, accesible e innovador. Que Kryphor Labs sea sinónimo de excelencia tecnológica nacida en Colombia para el mundo.",
-    },
+    eyebrow: "Kryphor Labs",
+    title: "Software construido con propósito.",
+    story: "Somos un estudio de desarrollo independiente fundado en Colombia en 2026. Nuestra idea es simple: crear tecnología que la gente realmente use y disfrute. Videojuegos que entretengan, aplicaciones que acompañen, herramientas que ayuden.",
+    misionTitle: "Misión",
+    mision: "Crear software de calidad que mejore la vida de las personas. Cada producto que lanzamos existe porque resuelve algo real.",
+    visionTitle: "Visión",
+    vision: "Ser un referente latinoamericano en desarrollo de software independiente. Que Kryphor Labs sea sinónimo de excelencia desde Colombia para el mundo.",
     values: [
-      { label: "Innovación",    desc: "Siempre buscamos la solución más creativa." },
-      { label: "Calidad",       desc: "Cada línea de código importa." },
-      { label: "Accesibilidad", desc: "Tecnología para todos, sin excepción." },
-      { label: "Pasión",        desc: "Construimos con amor lo que usamos con orgullo." },
+      { title: "Calidad sin concesiones", body: "Cada línea de código importa. No lanzamos algo hasta que estemos satisfechos con el resultado." },
+      { title: "Independencia total",     body: "Sin inversores externos ni presiones de mercado. Construimos lo que creemos que vale la pena construir." },
+      { title: "Accesibilidad real",      body: "Nuestras apps están diseñadas para funcionar para todos, no solo para quienes tienen el último dispositivo." },
     ],
   },
   en: {
-    title: "About",
-    highlight: "Kryphor Labs",
-    mision: {
-      label: "Mission",
-      text: "Build technology that improves people's lives, from mobile apps to video games, with quality, purpose and real impact. Every product we build exists to solve something that matters.",
-    },
-    vision: {
-      label: "Vision",
-      text: "Become a Latin American reference in independent, accessible and innovative software development. Let Kryphor Labs be synonymous with technological excellence born in Colombia for the world.",
-    },
+    eyebrow: "Kryphor Labs",
+    title: "Software built with purpose.",
+    story: "We are an independent development studio founded in Colombia in 2026. Our idea is simple: create technology that people actually use and enjoy. Games that entertain, apps that accompany, tools that help.",
+    misionTitle: "Mission",
+    mision: "Create quality software that improves people's lives. Every product we launch exists because it solves something real.",
+    visionTitle: "Vision",
+    vision: "Be a Latin American reference in independent software development. Let Kryphor Labs be synonymous with excellence from Colombia to the world.",
     values: [
-      { label: "Innovation",    desc: "We always seek the most creative solution." },
-      { label: "Quality",       desc: "Every line of code matters." },
-      { label: "Accessibility", desc: "Technology for everyone, without exception." },
-      { label: "Passion",       desc: "We build with love what we use with pride." },
+      { title: "Quality without compromise", body: "Every line of code matters. We don't ship something until we are satisfied with the result." },
+      { title: "Total independence",         body: "No external investors or market pressure. We build what we believe is worth building." },
+      { title: "Real accessibility",         body: "Our apps are designed to work for everyone, not just those with the latest device." },
     ],
   },
 };
-
-const valueIcons = [Lightbulb, Star, Globe, Heart];
 
 export default function AboutSection() {
   const { lang } = useApp();
   const c = copy[lang];
 
   return (
-    <section className="py-28" style={{ background: "var(--background)" }}>
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+    <section className="py-36" style={{ background: "var(--bg)" }}>
+      <div className="max-w-5xl mx-auto px-6 sm:px-10">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <h2 className="font-poppins font-bold text-4xl sm:text-5xl" style={{ color: "var(--foreground)" }}>
-            {c.title} <span className="gradient-text">{c.highlight}</span>
-          </h2>
-        </motion.div>
-
-        {/* Mission + Vision */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-14">
+        {/* Top */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 items-start">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="glass rounded-3xl p-10"
+            transition={{ duration: 0.65 }}
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0"
-                style={{ background: "rgba(56,189,248,0.10)" }}>
-                <Target size={20} style={{ color: "var(--accent)" }} />
-              </div>
-              <h3 className="font-poppins font-bold text-lg" style={{ color: "var(--foreground)" }}>
-                {c.mision.label}
-              </h3>
-            </div>
-            <p className="font-inter text-base leading-relaxed" style={{ color: "var(--muted-clr)" }}>
-              {c.mision.text}
+            <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-4"
+              style={{ color: "var(--accent)" }}>
+              {c.eyebrow}
+            </p>
+            <h2 className="font-poppins font-bold text-3xl sm:text-4xl leading-tight mb-6"
+              style={{ color: "var(--fg)" }}>
+              {c.title}
+            </h2>
+            <p className="font-inter text-base leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+              {c.story}
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.08 }}
-            className="glass rounded-3xl p-10"
+            transition={{ duration: 0.65, delay: 0.1 }}
+            className="space-y-4"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0"
-                style={{ background: "rgba(129,140,248,0.10)" }}>
-                <Eye size={20} style={{ color: "var(--accent-2)" }} />
-              </div>
-              <h3 className="font-poppins font-bold text-lg" style={{ color: "var(--foreground)" }}>
-                {c.vision.label}
-              </h3>
+            <div className="rounded-2xl p-7" style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
+              <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-3"
+                style={{ color: "var(--accent)" }}>
+                {c.misionTitle}
+              </p>
+              <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+                {c.mision}
+              </p>
             </div>
-            <p className="font-inter text-base leading-relaxed" style={{ color: "var(--muted-clr)" }}>
-              {c.vision.text}
-            </p>
+            <div className="rounded-2xl p-7" style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
+              <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-3"
+                style={{ color: "var(--accent-b)" }}>
+                {c.visionTitle}
+              </p>
+              <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+                {c.vision}
+              </p>
+            </div>
           </motion.div>
         </div>
 
         {/* Values */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {c.values.map(({ label, desc }, i) => {
-            const Icon = valueIcons[i];
-            return (
-              <motion.div
-                key={label}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.07 }}
-                whileHover={{ y: -4 }}
-                className="glass rounded-2xl p-7 text-center"
-              >
-                <div className="w-11 h-11 rounded-2xl flex items-center justify-center mx-auto mb-5"
-                  style={{ background: "rgba(56,189,248,0.08)" }}>
-                  <Icon size={20} style={{ color: "var(--accent)" }} />
-                </div>
-                <h4 className="font-poppins font-bold text-sm mb-2" style={{ color: "var(--foreground)" }}>
-                  {label}
-                </h4>
-                <p className="font-inter text-xs leading-relaxed" style={{ color: "var(--muted-clr)" }}>
-                  {desc}
-                </p>
-              </motion.div>
-            );
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {c.values.map(({ title, body }, i) => (
+            <motion.div key={title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              whileHover={{ y: -4 }}
+              className="rounded-2xl p-7"
+              style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
+              <div className="w-8 h-0.5 mb-5 rounded-full" style={{ background: "linear-gradient(90deg, var(--accent), var(--accent-b))" }} />
+              <h4 className="font-poppins font-semibold text-sm mb-3" style={{ color: "var(--fg)" }}>
+                {title}
+              </h4>
+              <p className="font-inter text-xs leading-relaxed" style={{ color: "var(--fg-muted)" }}>
+                {body}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

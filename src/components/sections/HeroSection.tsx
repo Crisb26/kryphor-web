@@ -1,22 +1,24 @@
 "use client";
 import { motion } from "framer-motion";
 import { useApp } from "@/lib/providers";
-import Button from "@/components/ui/Button";
+import { ArrowRight } from "lucide-react";
 
 const copy = {
   es: {
-    headline1: "Tecnología que",
-    headline2: "transforma vidas.",
-    sub: "Somos un estudio de software independiente nacido en Colombia. Construimos aplicaciones y videojuegos con calidad y propósito.",
-    cta: "Explorar Ecosistema",
-    ctaSecondary: "Nuestra Historia",
+    tag:  "Kryphor Labs",
+    h1:   "Construimos lo que",
+    h1b:  "el futuro necesita.",
+    sub:  "Estudio de software independiente. Creamos videojuegos, aplicaciones y experiencias digitales con propósito y calidad.",
+    cta:  "Explorar ecosistema",
+    cta2: "Nuestra historia",
   },
   en: {
-    headline1: "Technology that",
-    headline2: "transforms lives.",
-    sub: "We are an independent software studio born in Colombia. We build applications and video games with quality and purpose.",
-    cta: "Explore Ecosystem",
-    ctaSecondary: "Our Story",
+    tag:  "Kryphor Labs",
+    h1:   "We build what",
+    h1b:  "the future needs.",
+    sub:  "Independent software studio. We create video games, applications and digital experiences with purpose and quality.",
+    cta:  "Explore ecosystem",
+    cta2: "Our story",
   },
 };
 
@@ -25,82 +27,91 @@ export default function HeroSection() {
   const c = copy[lang];
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden dot-grid">
-      {/* Subtle radial gradients — not saturated */}
-      <div className="absolute top-1/4 right-1/3 w-[600px] h-[600px] rounded-full blur-[140px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(129,140,248,0.06), transparent)" }} />
-      <div className="absolute bottom-1/3 left-1/4 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(56,189,248,0.05), transparent)" }} />
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden grid-bg">
+      {/* Glow blobs — very subtle */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full blur-[180px]"
+          style={{ background: "radial-gradient(circle, rgba(129,140,248,0.07), transparent 70%)" }} />
+      </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-10 py-32 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-10 py-36 flex flex-col items-center text-center">
 
-        {/* Logo — prominent */}
+        {/* Logo */}
         <motion.div
-          initial={{ opacity: 0, y: -20, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-14"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16"
         >
           <img
             src={theme === "light" ? "/logos/kryphor_logo_light.png" : "/logos/kryphor_logo_transparent.png"}
             alt="Kryphor Labs"
-            className="h-28 sm:h-36 lg:h-44 w-auto object-contain mx-auto"
+            className="h-24 sm:h-32 lg:h-40 w-auto object-contain mx-auto"
           />
         </motion.div>
 
         {/* Headline */}
-        <motion.div
+        <motion.h1
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+          className="font-poppins font-bold tracking-tight leading-[1.08] mb-7"
+          style={{ fontSize: "clamp(38px, 6vw, 72px)", color: "var(--fg)" }}
+        >
+          {c.h1}<br />
+          <span className="gradient-text">{c.h1b}</span>
+        </motion.h1>
+
+        {/* Sub */}
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mb-7"
-        >
-          <h1
-            className="font-poppins font-bold leading-[1.1] tracking-tight"
-            style={{ fontSize: "clamp(40px, 6.5vw, 76px)", color: "var(--foreground)" }}
-          >
-            {c.headline1}<br />
-            <span className="gradient-text">{c.headline2}</span>
-          </h1>
-        </motion.div>
-
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="font-inter max-w-xl text-base sm:text-lg leading-relaxed mb-12"
-          style={{ color: "var(--muted-clr)" }}
+          transition={{ duration: 0.65, delay: 0.32 }}
+          className="font-inter max-w-xl text-base sm:text-lg leading-relaxed mb-14"
+          style={{ color: "var(--fg-muted)" }}
         >
           {c.sub}
         </motion.p>
 
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.48 }}
-          className="flex flex-wrap gap-4 justify-center"
+          transition={{ duration: 0.55, delay: 0.44 }}
+          className="flex flex-col sm:flex-row items-center gap-3"
         >
-          <Button href="/apps" size="lg">{c.cta}</Button>
-          <Button href="/about" variant="outline" size="lg">{c.ctaSecondary}</Button>
+          <a
+            href="/apps"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-poppins font-semibold text-sm text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.03]"
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-b))" }}
+          >
+            {c.cta}
+            <ArrowRight size={15} />
+          </a>
+          <a
+            href="/about"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-poppins font-semibold text-sm border transition-all duration-200 hover:opacity-80"
+            style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}
+          >
+            {c.cta2}
+          </a>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll dot */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ delay: 1.3 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8 }}
-          className="w-5 h-8 rounded-full border-2 flex items-start justify-center p-1"
-          style={{ borderColor: "var(--border-clr)" }}
+          animate={{ y: [0, 7, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          className="w-5 h-8 rounded-full border-2 flex items-start justify-center pt-1.5"
+          style={{ borderColor: "var(--border)" }}
         >
-          <div className="w-1 h-2 rounded-full" style={{ background: "var(--accent)" }} />
+          <div className="w-1 h-1.5 rounded-full" style={{ background: "var(--fg-muted)" }} />
         </motion.div>
       </motion.div>
     </section>
