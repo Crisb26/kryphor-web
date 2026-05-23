@@ -8,7 +8,7 @@ const copy = {
   es: {
     title: "Contáctanos",
     sub: "¿Tienes un proyecto, una pregunta o simplemente quieres saludar? Estamos aquí.",
-    emailLabel: "Email", locationLabel: "Ubicación", location: "Colombia 🇨🇴",
+    emailLabel: "Email", locationLabel: "Ubicación", location: "Colombia",
     name: "Nombre", namePh: "Tu nombre",
     email: "Email",
     subject: "Asunto", subjectPh: "¿De qué se trata?",
@@ -22,7 +22,7 @@ const copy = {
   en: {
     title: "Contact Us",
     sub: "Have a project, a question or just want to say hi? We're here.",
-    emailLabel: "Email", locationLabel: "Location", location: "Colombia 🇨🇴",
+    emailLabel: "Email", locationLabel: "Location", location: "Colombia",
     name: "Name", namePh: "Your name",
     email: "Email",
     subject: "Subject", subjectPh: "What's this about?",

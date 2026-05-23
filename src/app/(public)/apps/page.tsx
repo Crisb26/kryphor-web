@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gamepad2, BookOpen, Wrench, Bot, Clock } from "lucide-react";
+import { Gamepad2, BookOpen, ChevronDown, Clock } from "lucide-react";
 import { apps, type App } from "@/data/apps";
 import { useApp } from "@/lib/providers";
 
@@ -10,101 +10,82 @@ const copy = {
     tag: "Próximamente",
     title: "Nuestro",
     highlight: "Ecosistema",
-    sub: "Aplicaciones en desarrollo, construidas con pasión para mejorar tu vida diaria.",
-    filters: {
-      Todos: "Todos",
-      Religioso: "Espiritual",
-      Juego: "Videojuegos",
-      Herramienta: "Herramientas",
-      IA: "Inteligencia Artificial",
-    },
-    status: "En desarrollo",
-    notif: "Notifícame cuando esté lista",
-    soon: "Próximamente disponible",
+    sub: "Aplicaciones en desarrollo, construidas para acompañarte cada día.",
+    filters: { Todos: "Todos", Espiritual: "Espiritual", Juego: "Videojuegos" },
+    soon: "En desarrollo",
+    expand: "Ver detalles",
+    collapse: "Cerrar",
+    features: "Características",
   },
   en: {
     tag: "Coming Soon",
     title: "Our",
     highlight: "Ecosystem",
-    sub: "Applications in development, built with passion to improve your daily life.",
-    filters: {
-      Todos: "All",
-      Religioso: "Spiritual",
-      Juego: "Video Games",
-      Herramienta: "Tools",
-      IA: "Artificial Intelligence",
-    },
-    status: "In development",
-    notif: "Notify me when it's ready",
-    soon: "Coming soon",
+    sub: "Applications in development, built to accompany you every day.",
+    filters: { Todos: "All", Espiritual: "Spiritual", Juego: "Video Games" },
+    soon: "In development",
+    expand: "Details",
+    collapse: "Close",
+    features: "Features",
   },
 };
 
 const categoryIcons: Record<App["category"], typeof Gamepad2> = {
-  Religioso: BookOpen,
+  Espiritual: BookOpen,
   Juego: Gamepad2,
-  Herramienta: Wrench,
-  IA: Bot,
 };
 
 const categoryColors: Record<App["category"], string> = {
-  Religioso: "#27AE60",
+  Espiritual: "#27AE60",
   Juego: "#E74C3C",
-  Herramienta: "#2E86AB",
-  IA: "#7C3AED",
 };
 
-const filterKeys = ["Todos", "Religioso", "Juego", "Herramienta", "IA"] as const;
-
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.07 } } };
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  exit: { opacity: 0, scale: 0.97 },
-};
+const filterKeys = ["Todos", "Juego", "Espiritual"] as const;
 
 export default function AppsPage() {
   const { lang } = useApp();
   const c = copy[lang];
   const [filter, setFilter] = useState<string>("Todos");
+  const [expanded, setExpanded] = useState<string | null>(null);
 
   const filtered = filter === "Todos" ? apps : apps.filter((a) => a.category === filter);
+
+  const toggle = (id: string) => setExpanded(expanded === id ? null : id);
 
   return (
     <div className="min-h-screen pt-16" style={{ background: "var(--background)" }}>
 
-      {/* Header */}
-      <div className="py-24 text-center border-b" style={{ borderColor: "var(--border-clr)", background: "var(--surface)" }}>
+      {/* Page header */}
+      <div className="py-24 border-b" style={{ borderColor: "var(--border-clr)", background: "var(--surface)" }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.55 }}
+          className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-14"
         >
-          <span className="inline-block text-xs font-poppins font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-6"
-            style={{ color: "#7C3AED", background: "rgba(124,58,237,0.12)" }}>
+          <span className="inline-block text-xs font-poppins font-bold tracking-[0.18em] uppercase px-3 py-1.5 rounded-full mb-6"
+            style={{ color: "var(--accent-2)", background: "rgba(129,140,248,0.10)" }}>
             {c.tag}
           </span>
           <h1 className="font-poppins font-bold text-4xl sm:text-6xl mb-4" style={{ color: "var(--foreground)" }}>
             {c.title} <span className="gradient-text">{c.highlight}</span>
           </h1>
-          <p className="font-inter max-w-xl mx-auto" style={{ color: "var(--muted-clr)" }}>
-            {c.sub}
-          </p>
+          <p className="font-inter max-w-lg" style={{ color: "var(--muted-clr)" }}>{c.sub}</p>
         </motion.div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-14 py-16">
 
-        {/* Category filters */}
-        <div className="flex flex-wrap gap-2 justify-center mb-14">
+        {/* Filters */}
+        <div className="flex flex-wrap gap-2 mb-14">
           {filterKeys.map((f) => (
             <button
               key={f}
-              onClick={() => setFilter(f)}
-              className="px-5 py-2 rounded-full text-sm font-poppins font-bold transition-all duration-200"
+              onClick={() => { setFilter(f); setExpanded(null); }}
+              className="px-5 py-2.5 rounded-full text-sm font-poppins font-bold transition-all duration-200"
               style={
                 filter === f
-                  ? { background: "linear-gradient(135deg, #00D4FF, #7C3AED)", color: "#fff" }
+                  ? { background: "linear-gradient(135deg, var(--accent), var(--accent-2))", color: "#fff" }
                   : { background: "var(--glass-bg)", color: "var(--muted-clr)", border: "1px solid var(--border-clr)" }
               }
             >
@@ -113,81 +94,91 @@ export default function AppsPage() {
           ))}
         </div>
 
-        {/* App grid */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 gap-5"
-        >
-          <AnimatePresence mode="popLayout">
-            {filtered.map((app) => {
-              const CatIcon = categoryIcons[app.category];
-              const color = app.color || categoryColors[app.category];
+        {/* App cards — expandable */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {filtered.map((app) => {
+            const CatIcon = categoryIcons[app.category];
+            const color = categoryColors[app.category];
+            const isOpen = expanded === app.id;
 
-              return (
-                <motion.div
-                  key={app.id}
-                  variants={item}
-                  layout
-                  className="glass rounded-3xl overflow-hidden"
-                  style={{ border: `1px solid ${color}20` }}
-                >
-                  {/* Top accent bar */}
-                  <div className="h-0.5" style={{ background: `linear-gradient(90deg, ${color}, transparent)` }} />
-
-                  <div className="p-7">
-                    {/* Header row */}
-                    <div className="flex items-start justify-between mb-5">
-                      <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0"
-                          style={{ background: `${color}18` }}>
-                          {app.icon}
-                        </div>
-                        <div>
-                          <h3 className="font-poppins font-bold text-base" style={{ color: "var(--foreground)" }}>
-                            {app.name}
-                          </h3>
-                          <p className="font-inter text-sm mt-0.5" style={{ color: "var(--muted-clr)" }}>
-                            {app.tagline}
-                          </p>
-                        </div>
-                      </div>
-                      {/* Category chip */}
-                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-poppins font-bold flex-shrink-0"
-                        style={{ background: `${categoryColors[app.category]}15`, color: categoryColors[app.category] }}>
-                        <CatIcon size={10} />
-                        {c.filters[app.category as keyof typeof c.filters]}
-                      </div>
-                    </div>
-
-                    <p className="font-inter text-sm leading-relaxed mb-5" style={{ color: "var(--muted-clr)" }}>
-                      {app.description}
-                    </p>
-
-                    {/* Features */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {app.features.map((f) => (
-                        <span key={f} className="text-xs px-3 py-1 rounded-lg font-inter"
-                          style={{ background: `${color}12`, color: color }}>
-                          {f}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Footer */}
-                    <div className="flex items-center gap-2 pt-4 border-t" style={{ borderColor: "var(--border-clr)" }}>
-                      <Clock size={12} style={{ color: "var(--muted-clr)" }} />
-                      <span className="text-xs font-inter" style={{ color: "var(--muted-clr)" }}>
-                        {c.soon}
-                      </span>
-                    </div>
+            return (
+              <motion.div
+                key={app.id}
+                layout
+                className="glass rounded-3xl overflow-hidden cursor-pointer select-none"
+                style={{ border: `1px solid ${isOpen ? color + "30" : "var(--border-clr)"}` }}
+                onClick={() => toggle(app.id)}
+                whileHover={{ y: isOpen ? 0 : -3 }}
+                transition={{ duration: 0.2 }}
+              >
+                {/* Always visible: header row */}
+                <div className="flex items-center gap-5 px-7 py-6">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0"
+                    style={{ background: `${color}12` }}>
+                    {app.icon}
                   </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </motion.div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-poppins font-bold text-base" style={{ color: "var(--foreground)" }}>
+                      {app.name}
+                    </h3>
+                    <p className="font-inter text-sm mt-0.5" style={{ color: "var(--muted-clr)" }}>
+                      {app.tagline}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3 flex-shrink-0">
+                    <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-poppins font-bold"
+                      style={{ background: `${color}12`, color }}>
+                      <CatIcon size={10} />
+                      {c.filters[app.category as keyof typeof c.filters]}
+                    </div>
+                    <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.25 }}>
+                      <ChevronDown size={18} style={{ color: "var(--muted-clr)" }} />
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Expandable content */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-7 pb-7 border-t" style={{ borderColor: "var(--border-clr)" }}>
+                        <p className="font-inter text-sm leading-relaxed mt-5 mb-5" style={{ color: "var(--muted-clr)" }}>
+                          {app.description}
+                        </p>
+
+                        <p className="font-poppins font-bold text-xs mb-3 tracking-wide" style={{ color: "var(--foreground)" }}>
+                          {c.features}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-5">
+                          {app.features.map((f) => (
+                            <span key={f} className="text-xs px-3 py-1 rounded-lg font-inter"
+                              style={{ background: `${color}10`, color }}>
+                              {f}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <Clock size={12} style={{ color: "var(--muted-clr)" }} />
+                          <span className="text-xs font-inter" style={{ color: "var(--muted-clr)" }}>
+                            {c.soon}
+                          </span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
