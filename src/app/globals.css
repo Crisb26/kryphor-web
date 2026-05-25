@@ -6,37 +6,39 @@
   --font-inter:   'Inter',   sans-serif;
 }
 
-/* ── Dark (default) ──────────────────────────────────────────── */
+/* ── Dark (default) ────────────────────────────────────────── */
 :root, [data-theme="dark"] {
-  --bg:        #06060A;
-  --bg-2:      #0D0D14;
-  --bg-3:      #13131C;
-  --fg:        #F0F0F5;
-  --fg-muted:  #6B6B80;
-  --border:    rgba(255,255,255,0.06);
-  --glass:     rgba(13,13,20,0.85);
-  --accent:    #38BDF8;
-  --accent-b:  #818CF8;
-  --glow-a:    rgba(56,189,248,0.15);
-  --glow-b:    rgba(129,140,248,0.15);
+  --bg:       #05050A;
+  --bg-2:     #0C0C14;
+  --bg-3:     #121220;
+  --fg:       #F2F2F8;
+  --fg-muted: #636380;
+  --border:   rgba(255,255,255,0.07);
+  --glass:    rgba(12,12,20,0.88);
+  --accent:   #38BDF8;
+  --accent-b: #818CF8;
+  --glow-a:   rgba(56,189,248,0.18);
+  --glow-b:   rgba(129,140,248,0.18);
+  --card-bg:  rgba(255,255,255,0.03);
 }
 
-/* ── Light ───────────────────────────────────────────────────── */
+/* ── Light ─────────────────────────────────────────────────── */
 [data-theme="light"] {
-  --bg:        #F5F5FA;
-  --bg-2:      #EBEBF2;
-  --bg-3:      #E2E2EC;
-  --fg:        #0A0A12;
-  --fg-muted:  #555568;
-  --border:    rgba(0,0,0,0.07);
-  --glass:     rgba(255,255,255,0.82);
-  --accent:    #0284C7;
-  --accent-b:  #6366F1;
-  --glow-a:    rgba(2,132,199,0.10);
-  --glow-b:    rgba(99,102,241,0.10);
+  --bg:       #F4F4FA;
+  --bg-2:     #EAEAF2;
+  --bg-3:     #E0E0EB;
+  --fg:       #080812;
+  --fg-muted: #5A5A72;
+  --border:   rgba(0,0,0,0.08);
+  --glass:    rgba(255,255,255,0.85);
+  --accent:   #0284C7;
+  --accent-b: #6366F1;
+  --glow-a:   rgba(2,132,199,0.12);
+  --glow-b:   rgba(99,102,241,0.12);
+  --card-bg:  rgba(0,0,0,0.02);
 }
 
-/* ── Reset ───────────────────────────────────────────────────── */
+/* ── Reset ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -48,53 +50,109 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background 0.25s, color 0.25s;
+  overflow-x: hidden;
 }
 
 h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
 
-/* ── Scrollbar ───────────────────────────────────────────────── */
+/* ── Scrollbar ─────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--accent-b); border-radius: 99px; }
 
-/* ── Utilities ───────────────────────────────────────────────── */
+/* ── Container ─────────────────────────────────────────────── */
+.kl-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 640px) {
+  .kl-container { padding-left: 2.5rem; padding-right: 2.5rem; }
+}
+@media (min-width: 1024px) {
+  .kl-container { padding-left: 4rem; padding-right: 4rem; }
+}
+@media (min-width: 1280px) {
+  .kl-container { padding-left: 5rem; padding-right: 5rem; }
+}
+
+/* ── Gradient text ─────────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent), var(--accent-b));
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-b) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* ── Glass ─────────────────────────────────────────────────── */
 .glass {
   background: var(--glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border);
 }
 
-/* Subtle dot grid for hero */
+/* ── Dot grid background ───────────────────────────────────── */
 .dot-grid {
   background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-size: 28px 28px;
 }
 
-/* Nav hover underline */
+/* ── Nav link hover underline ──────────────────────────────── */
 .nav-link { position: relative; }
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -4px; left: 50%;
+  bottom: -5px; left: 50%;
   width: 0; height: 1.5px;
   background: linear-gradient(90deg, var(--accent), var(--accent-b));
-  transition: width .22s ease, left .22s ease;
+  transition: width .2s ease, left .2s ease;
   border-radius: 99px;
 }
 .nav-link:hover::after { width: 100%; left: 0; }
 
-/* Card glow on hover */
-.card-hover {
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+/* ── Hero blob animation ───────────────────────────────────── */
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(40px, -40px) scale(1.08); }
+  66%       { transform: translate(-30px, 30px) scale(0.95); }
 }
-.card-hover:hover {
-  box-shadow: 0 0 32px var(--glow-a);
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  animation: blob-drift var(--blob-duration, 10s) ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ── Carousel ──────────────────────────────────────────────── */
+.carousel-track { cursor: grab; }
+.carousel-track:active { cursor: grabbing; }
+
+/* ── Card hover lift ───────────────────────────────────────── */
+.card-lift {
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+/* ── Gradient border card ──────────────────────────────────── */
+.grad-border {
+  position: relative;
+  border: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+.grad-border:hover { border-color: transparent; }
+.grad-border:hover::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--accent), var(--accent-b));
+  z-index: -1;
 }

@@ -1,68 +1,69 @@
 "use client";
 import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  Bot,
-  AppWindow,
-  Settings,
-  LogOut,
-  ChevronRight,
-} from "lucide-react";
-import KSymbol from "@/components/ui/KSymbol";
+import { LayoutDashboard, Bot, AppWindow, Settings, LogOut, ChevronRight, BarChart2 } from "lucide-react";
+import { useApp } from "@/lib/providers";
 
 const navItems = [
-  { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { label: "Betho Console", href: "/admin/betho", icon: Bot },
-  { label: "Apps", href: "/admin/apps", icon: AppWindow },
-  { label: "Configuración", href: "/admin/settings", icon: Settings },
+  { label: "Dashboard",   href: "/admin",            icon: LayoutDashboard },
+  { label: "Analytics",   href: "/admin/analytics",  icon: BarChart2 },
+  { label: "Betho",       href: "/admin/betho",       icon: Bot },
+  { label: "Apps",        href: "/admin/apps",        icon: AppWindow },
+  { label: "Ajustes",     href: "/admin/settings",    icon: Settings },
 ];
 
 export default function AdminSidebar() {
   const pathname = usePathname();
+  const { theme } = useApp();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-bg-card border-r border-white/5 flex flex-col z-40">
+    <aside className="fixed left-0 top-0 h-screen w-60 flex flex-col z-40"
+      style={{ background: "var(--bg-2)", borderRight: "1px solid var(--border)" }}>
+
       {/* Logo */}
-      <div className="p-6 border-b border-white/5">
+      <div className="p-5 border-b" style={{ borderColor: "var(--border)" }}>
         <a href="/admin" className="flex items-center gap-3">
-          <KSymbol size={32} animate={false} />
-          <div>
-            <div className="font-poppins font-bold text-kryphor-white text-xs tracking-widest">KRYPHOR</div>
-            <div className="font-poppins font-light text-cyan text-xs tracking-widest">ADMIN</div>
-          </div>
+          <img
+            src={theme === "light" ? "/logos/kryphor_logo_light.png" : "/logos/kryphor_logo_transparent.png"}
+            alt="Kryphor Labs"
+            className="h-7 w-auto object-contain"
+          />
         </a>
+        <p className="font-inter text-xs mt-2" style={{ color: "var(--fg-muted)" }}>
+          Panel de control
+        </p>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 p-4 space-y-1">
+      <nav className="flex-1 p-3 space-y-1">
         {navItems.map(({ label, href, icon: Icon }) => {
-          const active = pathname === href;
+          const active = pathname === href || (href !== "/admin" && pathname.startsWith(href));
           return (
-            <a
-              key={href}
-              href={href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all duration-200 group ${
-                active
-                  ? "bg-purple/20 text-kryphor-white border border-purple/30"
-                  : "text-muted hover:text-kryphor-white hover:bg-white/5"
-              }`}
+            <a key={href} href={href}
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-inter transition-all duration-150"
+              style={active
+                ? { background: "var(--glow-b)", color: "var(--fg)", border: "1px solid var(--border)" }
+                : { color: "var(--fg-muted)", border: "1px solid transparent" }
+              }
+              onMouseEnter={e => { if (!active) e.currentTarget.style.color = "var(--fg)"; }}
+              onMouseLeave={e => { if (!active) e.currentTarget.style.color = "var(--fg-muted)"; }}
             >
-              <Icon size={18} className={active ? "text-cyan" : ""} />
-              <span className="font-inter flex-1">{label}</span>
-              {active && <ChevronRight size={14} className="text-cyan" />}
+              <Icon size={16} style={{ color: active ? "var(--accent)" : "inherit", flexShrink: 0 }} />
+              <span className="flex-1">{label}</span>
+              {active && <ChevronRight size={13} style={{ color: "var(--accent)" }} />}
             </a>
           );
         })}
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-white/5">
-        <a
-          href="/"
-          className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-kryphor-white hover:bg-white/5 text-sm transition-all"
-        >
-          <LogOut size={18} />
-          <span>Volver al sitio</span>
+      <div className="p-3 border-t" style={{ borderColor: "var(--border)" }}>
+        <a href="/"
+          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-inter transition-colors"
+          style={{ color: "var(--fg-muted)" }}
+          onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
+          onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}>
+          <LogOut size={16} style={{ flexShrink: 0 }} />
+          Volver al sitio
         </a>
       </div>
     </aside>

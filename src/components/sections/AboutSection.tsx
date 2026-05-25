@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useApp } from "@/lib/providers";
+import { Shield, Zap, Users } from "lucide-react";
 
 const copy = {
   es: {
@@ -12,9 +13,9 @@ const copy = {
     visionTitle: "Visión",
     vision: "Ser un referente latinoamericano en desarrollo de software independiente. Que Kryphor Labs sea sinónimo de excelencia desde Colombia para el mundo.",
     values: [
-      { title: "Calidad sin concesiones", body: "Cada línea de código importa. No lanzamos algo hasta que estemos satisfechos con el resultado." },
-      { title: "Independencia total",     body: "Sin inversores externos ni presiones de mercado. Construimos lo que creemos que vale la pena construir." },
-      { title: "Accesibilidad real",      body: "Nuestras apps están diseñadas para funcionar para todos, no solo para quienes tienen el último dispositivo." },
+      { icon: Shield, title: "Calidad sin concesiones", body: "Cada línea de código importa. No lanzamos algo hasta que estemos satisfechos con el resultado." },
+      { icon: Zap,    title: "Independencia total",     body: "Sin inversores externos ni presiones de mercado. Construimos lo que creemos que vale la pena." },
+      { icon: Users,  title: "Accesibilidad real",      body: "Nuestras apps funcionan para todos, no solo para quienes tienen el último dispositivo." },
     ],
   },
   en: {
@@ -26,9 +27,9 @@ const copy = {
     visionTitle: "Vision",
     vision: "Be a Latin American reference in independent software development. Let Kryphor Labs be synonymous with excellence from Colombia to the world.",
     values: [
-      { title: "Quality without compromise", body: "Every line of code matters. We don't ship something until we are satisfied with the result." },
-      { title: "Total independence",         body: "No external investors or market pressure. We build what we believe is worth building." },
-      { title: "Real accessibility",         body: "Our apps are designed to work for everyone, not just those with the latest device." },
+      { icon: Shield, title: "Quality without compromise", body: "Every line of code matters. We don't ship something until we are satisfied with the result." },
+      { icon: Zap,    title: "Total independence",         body: "No external investors or market pressure. We build what we believe is worth building." },
+      { icon: Users,  title: "Real accessibility",         body: "Our apps work for everyone, not just those with the latest device." },
     ],
   },
 };
@@ -38,14 +39,13 @@ export default function AboutSection() {
   const c = copy[lang];
 
   return (
-    <section className="py-40" style={{ background: "var(--bg)" }}>
-      <div className="max-w-5xl mx-auto px-8 sm:px-12">
+    <section className="py-36" style={{ background: "var(--bg-2)" }}>
+      <div className="kl-container">
 
-        {/* Top grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-28 items-start">
-
+        {/* Top: story + mission/vision */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 mb-20">
           <motion.div
-            initial={{ opacity: 0, x: -28 }}
+            initial={{ opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
@@ -55,37 +55,37 @@ export default function AboutSection() {
               {c.eyebrow}
             </p>
             <h2 className="font-poppins font-bold leading-tight mb-8"
-              style={{ fontSize: "clamp(30px, 4vw, 48px)", color: "var(--fg)" }}>
+              style={{ fontSize: "clamp(28px, 3.8vw, 50px)", color: "var(--fg)" }}>
               {c.title}
             </h2>
-            <p className="font-inter text-base sm:text-lg leading-relaxed"
-              style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
+            <p className="font-inter leading-relaxed"
+              style={{ fontSize: "clamp(15px, 1.5vw, 18px)", color: "var(--fg-muted)", lineHeight: 1.8 }}>
               {c.story}
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 28 }}
+            initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="space-y-5"
+            className="flex flex-col gap-5"
           >
-            <div className="rounded-2xl p-8" style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
+            <div className="rounded-2xl p-8" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
               <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-4"
                 style={{ color: "var(--accent)" }}>
                 {c.misionTitle}
               </p>
-              <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
+              <p className="font-inter text-base leading-relaxed" style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
                 {c.mision}
               </p>
             </div>
-            <div className="rounded-2xl p-8" style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
+            <div className="rounded-2xl p-8" style={{ background: "var(--bg)", border: "1px solid var(--border)" }}>
               <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-4"
                 style={{ color: "var(--accent-b)" }}>
                 {c.visionTitle}
               </p>
-              <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
+              <p className="font-inter text-base leading-relaxed" style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
                 {c.vision}
               </p>
             </div>
@@ -94,19 +94,21 @@ export default function AboutSection() {
 
         {/* Values */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {c.values.map(({ title, body }, i) => (
+          {c.values.map(({ icon: Icon, title, body }, i) => (
             <motion.div key={title}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.55 }}
+              transition={{ delay: i * 0.12, duration: 0.6 }}
               whileHover={{ y: -6 }}
-              className="rounded-2xl p-8 card-hover"
-              style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}
+              className="rounded-2xl p-8"
+              style={{ background: "var(--bg)", border: "1px solid var(--border)", transition: "transform 0.28s ease" }}
             >
-              <div className="w-10 h-0.5 mb-6 rounded-full"
-                style={{ background: "linear-gradient(90deg, var(--accent), var(--accent-b))" }} />
-              <h4 className="font-poppins font-semibold text-sm mb-4" style={{ color: "var(--fg)" }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-6"
+                style={{ background: "var(--glow-a)" }}>
+                <Icon size={18} style={{ color: "var(--accent)" }} />
+              </div>
+              <h4 className="font-poppins font-semibold text-base mb-3" style={{ color: "var(--fg)" }}>
                 {title}
               </h4>
               <p className="font-inter text-sm leading-relaxed" style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
@@ -115,7 +117,6 @@ export default function AboutSection() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

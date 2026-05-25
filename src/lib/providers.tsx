@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
+import { usePageView } from "@/lib/usePageView";
 
 export type Theme = "dark" | "light";
 export type Lang = "es" | "en";
@@ -17,6 +18,11 @@ const AppContext = createContext<AppCtx>({
   toggleTheme: () => {},
   toggleLang: () => {},
 });
+
+function PageViewTracker() {
+  usePageView();
+  return null;
+}
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
@@ -49,6 +55,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
 
   return (
     <AppContext.Provider value={{ theme, lang, toggleTheme, toggleLang }}>
+      <PageViewTracker />
       {children}
     </AppContext.Provider>
   );

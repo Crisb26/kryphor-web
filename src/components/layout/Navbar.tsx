@@ -34,20 +34,19 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -56, opacity: 0 }}
+      initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.55, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
         background: scrolled ? "var(--glass)" : "transparent",
         backdropFilter: scrolled ? "blur(24px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(24px)" : "none",
         borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
       }}
     >
-      <div className="max-w-5xl mx-auto px-8 sm:px-12">
-        <div className="flex items-center justify-between h-18 py-4">
-
-          {/* Logo */}
+      <div className="kl-container">
+        <div className="flex items-center justify-between py-4">
           <a href="/" className="group flex-shrink-0">
             <img
               src={theme === "light" ? "/logos/kryphor_logo_light.png" : "/logos/kryphor_logo_transparent.png"}
@@ -56,7 +55,7 @@ export default function Navbar() {
             />
           </a>
 
-          {/* Desktop links */}
+          {/* Desktop */}
           <div className="hidden md:flex items-center gap-10">
             {navLinks.map(link => (
               <a key={link.href} href={link.href}
@@ -83,12 +82,9 @@ export default function Navbar() {
               style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}
               onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
               onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}>
-              <Lock size={11} />
-              Admin
+              <Lock size={11} /> Admin
             </a>
-            <button className="md:hidden p-1.5 transition-colors"
-              style={{ color: "var(--fg-muted)" }}
-              onClick={() => setOpen(!open)}>
+            <button className="md:hidden p-2" style={{ color: "var(--fg-muted)" }} onClick={() => setOpen(!open)}>
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
@@ -105,7 +101,7 @@ export default function Navbar() {
             className="md:hidden overflow-hidden"
             style={{ borderTop: "1px solid var(--border)", background: "var(--glass)" }}
           >
-            <div className="max-w-5xl mx-auto px-8 py-5 space-y-1">
+            <div className="kl-container py-5 space-y-1">
               {navLinks.map(link => (
                 <a key={link.href} href={link.href} onClick={() => setOpen(false)}
                   className="block py-3.5 text-sm font-inter border-b"
@@ -113,20 +109,20 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <div className="flex gap-2 pt-4">
+              <div className="flex gap-3 pt-4">
                 <button onClick={toggleTheme}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs border font-inter"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs border"
                   style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}>
                   {theme === "dark" ? <><Sun size={12} /> Modo claro</> : <><Moon size={12} /> Modo oscuro</>}
                 </button>
                 <button onClick={toggleLang}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs border font-inter"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs border"
                   style={{ color: "var(--fg-muted)", borderColor: "var(--border)" }}>
                   <Globe size={12} /> {lang === "es" ? "English" : "Español"}
                 </button>
               </div>
               <a href="/login"
-                className="flex items-center gap-2 py-3.5 text-sm font-inter"
+                className="flex items-center gap-2 pt-4 pb-2 text-sm font-inter"
                 style={{ color: "var(--fg-muted)" }}>
                 <Lock size={13} /> Admin
               </a>
