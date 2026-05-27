@@ -132,6 +132,12 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
 .carousel-track { cursor: grab; }
 .carousel-track:active { cursor: grabbing; }
 
+/* ── Netflix ticker ────────────────────────────────────────── */
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% / 3)); }
+}
+
 /* ── Card hover lift ───────────────────────────────────────── */
 .card-lift {
   transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;

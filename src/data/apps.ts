@@ -3,12 +3,14 @@ export interface App {
   name: string;
   tagline: string;
   description: string;
-  category: "Espiritual" | "Juego";
+  category: "Espiritual" | "Juego" | "Conectividad";
   status: "disponible" | "en-desarrollo" | "proximamente";
   playStoreUrl?: string;
+  apkUrl?: string;
   color: string;
   icon: string;
   features: string[];
+  subsidiary?: string;
 }
 
 export const statusLabels: Record<App["status"], string> = {
@@ -18,6 +20,25 @@ export const statusLabels: Record<App["status"], string> = {
 };
 
 export const apps: App[] = [
+  {
+    id: "kryphor-connect-tv",
+    name: "KryphorConnect TV",
+    tagline: "Conectividad digital en tu pantalla",
+    description:
+      "App para Android TV y Google TV que gestiona contenido digital en pantallas. Subsidiaria de Kryphor Labs, disponible en Play Store y como APK descargable para TVs sin Play Store.",
+    category: "Conectividad",
+    status: "disponible",
+    color: "#38BDF8",
+    icon: "📺",
+    subsidiary: "KryphorConnect",
+    features: [
+      "Compatible con Android TV y Google TV",
+      "APK descargable (sin necesidad de Play Store)",
+      "Instalación vía USB o descarga directa",
+      "Panel de administración web",
+      "Gestión de contenido en tiempo real",
+    ],
+  },
   {
     id: "mi-devocionario",
     name: "Mi Devocionario",

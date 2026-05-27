@@ -4,7 +4,9 @@ export default function AdminPanelLayout({ children }: { children: React.ReactNo
   return (
     <div className="flex min-h-screen" style={{ background: "var(--bg)" }}>
       <AdminSidebar />
-      <main className="flex-1 ml-60 p-8 min-h-screen" style={{ background: "var(--bg)" }}>{children}</main>
+      <main className="flex-1 min-w-0 p-8" style={{ background: "var(--bg)" }}>
+        {children}
+      </main>
     </div>
   );
 }

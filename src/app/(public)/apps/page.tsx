@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gamepad2, BookOpen, ChevronDown, Check } from "lucide-react";
+import { Gamepad2, BookOpen, ChevronDown, Check, Wifi } from "lucide-react";
 import { apps, type App } from "@/data/apps";
 import { useApp } from "@/lib/providers";
 
@@ -10,7 +10,7 @@ const copy = {
     eyebrow: "Próximamente",
     title: "Nuestro ecosistema.",
     sub: "Aplicaciones en desarrollo, construidas para acompañarte cada día.",
-    filters: { Todos: "Todos", Espiritual: "Espiritual", Juego: "Videojuegos" },
+    filters: { Todos: "Todos", Conectividad: "Conectividad", Espiritual: "Espiritual", Juego: "Videojuegos" },
     status: {
       disponible:      "Disponible",
       "en-desarrollo": "En desarrollo",
@@ -22,7 +22,7 @@ const copy = {
       proximamente:    "#818CF8",
     },
     features: "Características",
-    catLabel: { Juego: "Videojuego", Espiritual: "Espiritual" },
+    catLabel: { Juego: "Videojuego", Espiritual: "Espiritual", Conectividad: "Conectividad" },
     expand:   "Ver detalles",
     collapse: "Cerrar",
   },
@@ -30,7 +30,7 @@ const copy = {
     eyebrow: "Coming Soon",
     title: "Our ecosystem.",
     sub: "Applications in development, built to accompany you every day.",
-    filters: { Todos: "All", Espiritual: "Spiritual", Juego: "Video Games" },
+    filters: { Todos: "All", Conectividad: "Connectivity", Espiritual: "Spiritual", Juego: "Video Games" },
     status: {
       disponible:      "Available",
       "en-desarrollo": "In Development",
@@ -42,7 +42,7 @@ const copy = {
       proximamente:    "#818CF8",
     },
     features: "Features",
-    catLabel: { Juego: "Video Game", Espiritual: "Spiritual" },
+    catLabel: { Juego: "Video Game", Espiritual: "Spiritual", Conectividad: "Connectivity" },
     expand:   "Details",
     collapse: "Close",
   },
@@ -51,9 +51,10 @@ const copy = {
 const categoryIcons: Record<App["category"], typeof Gamepad2> = {
   Espiritual: BookOpen,
   Juego: Gamepad2,
+  Conectividad: Wifi,
 };
 
-const filterKeys = ["Todos", "Juego", "Espiritual"] as const;
+const filterKeys = ["Todos", "Conectividad", "Juego", "Espiritual"] as const;
 
 export default function AppsPage() {
   const { lang } = useApp();

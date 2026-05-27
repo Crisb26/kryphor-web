@@ -1,7 +1,7 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Gamepad2, BookOpen, Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, Gamepad2, BookOpen, Check, Wifi } from "lucide-react";
 import { useApp } from "@/lib/providers";
 import { apps, App } from "@/data/apps";
 
@@ -9,7 +9,7 @@ const copy = {
   es: {
     eyebrow: "Lo que construimos",
     title:   "Nuestro ecosistema.",
-    sub:     "Arrastra las tarjetas para explorar. Haz clic en cualquiera para ver los detalles.",
+    sub:     "Pasa el cursor sobre las tarjetas para pausar. Haz clic para ver detalles.",
     status: {
       disponible:      "Disponible",
       "en-desarrollo": "En desarrollo",
@@ -21,13 +21,14 @@ const copy = {
       proximamente:    "#818CF8",
     },
     features:   "Características",
-    catLabel:   { Juego: "Videojuego", Espiritual: "Espiritual" },
+    catLabel:   { Juego: "Videojuego", Espiritual: "Espiritual", Conectividad: "Conectividad" },
+    subsidiary: "Subsidiaria de Kryphor Labs",
     close:      "Cerrar",
   },
   en: {
     eyebrow: "What we build",
     title:   "Our ecosystem.",
-    sub:     "Drag cards to explore. Click any card to see details.",
+    sub:     "Hover to pause the carousel. Click any card to see details.",
     status: {
       disponible:      "Available",
       "en-desarrollo": "In Development",
@@ -39,145 +40,123 @@ const copy = {
       proximamente:    "#818CF8",
     },
     features:   "Features",
-    catLabel:   { Juego: "Video Game", Espiritual: "Spiritual" },
+    catLabel:   { Juego: "Video Game", Espiritual: "Spiritual", Conectividad: "Connectivity" },
+    subsidiary: "A Kryphor Labs subsidiary",
     close:      "Close",
   },
 };
 
-const catIcon = { Juego: Gamepad2, Espiritual: BookOpen };
+const catIcon = { Juego: Gamepad2, Espiritual: BookOpen, Conectividad: Wifi };
+const loopApps = [...apps, ...apps, ...apps];
 
 export default function EcosystemSection() {
   const { lang } = useApp();
   const c = copy[lang];
   const [selected, setSelected] = useState<App | null>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [dragWidth, setDragWidth] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-
-  useEffect(() => {
-    const calc = () => {
-      if (trackRef.current) {
-        setDragWidth(Math.max(0, trackRef.current.scrollWidth - trackRef.current.offsetWidth));
-      }
-    };
-    calc();
-    window.addEventListener("resize", calc);
-    return () => window.removeEventListener("resize", calc);
-  }, []);
-
-  const scroll = (dir: "left" | "right") => {
-    if (!trackRef.current) return;
-    const by = trackRef.current.offsetWidth * 0.7;
-    trackRef.current.scrollBy({ left: dir === "right" ? by : -by, behavior: "smooth" });
-  };
+  const [paused, setPaused] = useState(false);
 
   return (
-    <section className="py-32 overflow-hidden" style={{ background: "var(--bg)" }}>
-      <div className="kl-container mb-12">
+    <section className="py-36 overflow-hidden" style={{ background: "var(--bg)" }}>
+
+      {/* Header */}
+      <div className="kl-container mb-14">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
-          <div>
-            <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-4"
-              style={{ color: "var(--accent)" }}>
-              {c.eyebrow}
-            </p>
-            <h2 className="font-poppins font-bold leading-tight mb-4"
-              style={{ fontSize: "clamp(32px, 4.5vw, 56px)", color: "var(--fg)" }}>
-              {c.title}
-            </h2>
-            <p className="font-inter text-base max-w-lg"
-              style={{ color: "var(--fg-muted)", lineHeight: 1.7 }}>
-              {c.sub}
-            </p>
-          </div>
-
-          {/* Arrow controls — desktop */}
-          <div className="hidden md:flex items-center gap-2 flex-shrink-0">
-            <button onClick={() => scroll("left")}
-              className="w-10 h-10 rounded-full border flex items-center justify-center transition-colors"
-              style={{ borderColor: "var(--border)", color: "var(--fg-muted)" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}>
-              <ChevronLeft size={18} />
-            </button>
-            <button onClick={() => scroll("right")}
-              className="w-10 h-10 rounded-full border flex items-center justify-center transition-colors"
-              style={{ borderColor: "var(--border)", color: "var(--fg-muted)" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "var(--fg-muted)")}>
-              <ChevronRight size={18} />
-            </button>
-          </div>
+          <p className="font-poppins font-semibold text-sm tracking-widest uppercase mb-5"
+            style={{ color: "var(--accent)" }}>
+            {c.eyebrow}
+          </p>
+          <h2 className="font-poppins font-bold leading-tight mb-5"
+            style={{ fontSize: "clamp(32px, 4.5vw, 56px)", color: "var(--fg)" }}>
+            {c.title}
+          </h2>
+          <p className="font-inter text-base max-w-lg"
+            style={{ color: "var(--fg-muted)", lineHeight: 1.7 }}>
+            {c.sub}
+          </p>
         </motion.div>
       </div>
 
-      {/* Carousel — full-bleed scroll */}
+      {/* Netflix-style auto-scroll ticker */}
       <div
-        ref={trackRef}
-        className="flex gap-5 overflow-x-auto pb-4 carousel-track select-none"
+        className="relative"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
         style={{
-          paddingLeft: "max(1.5rem, calc((100vw - 1280px) / 2 + 5rem))",
-          paddingRight: "max(1.5rem, calc((100vw - 1280px) / 2 + 5rem))",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
+          maskImage: "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
+          WebkitMaskImage: "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
         }}
       >
-        {apps.map((app, i) => {
-          const Icon = catIcon[app.category];
-          const statusColor = c.statusColor[app.status];
-
-          return (
-            <motion.div
-              key={app.id}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: i * 0.08, duration: 0.55 }}
-              className="flex-shrink-0 rounded-2xl grad-border cursor-pointer group"
-              style={{
-                width: "clamp(260px, 28vw, 320px)",
-                background: "var(--bg-2)",
-                padding: "2rem",
-              }}
-              onClick={() => !isDragging && setSelected(app)}
-              onMouseDown={() => setIsDragging(false)}
-              onMouseMove={() => setIsDragging(true)}
-            >
-              {/* Category icon */}
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
-                style={{ background: `${app.color}18` }}>
-                <Icon size={22} style={{ color: app.color }} />
-              </div>
-
-              {/* Name */}
-              <h3 className="font-poppins font-bold text-lg mb-2"
-                style={{ color: "var(--fg)" }}>
-                {app.name}
-              </h3>
-
-              {/* Tagline */}
-              <p className="font-inter text-sm mb-6"
-                style={{ color: "var(--fg-muted)", lineHeight: 1.7 }}>
-                {app.tagline}
-              </p>
-
-              {/* Status */}
-              <span className="inline-block font-poppins font-semibold text-xs px-3 py-1 rounded-full"
+        <div
+          className="flex gap-5"
+          style={{
+            animation: "ticker-scroll 40s linear infinite",
+            animationPlayState: paused ? "paused" : "running",
+            width: "max-content",
+          }}
+        >
+          {loopApps.map((app, i) => {
+            const Icon = catIcon[app.category];
+            const statusColor = c.statusColor[app.status];
+            return (
+              <button
+                key={i}
+                onClick={() => setSelected(app)}
+                className="flex-shrink-0 rounded-2xl text-left transition-all duration-300"
                 style={{
-                  color: statusColor,
-                  background: `${statusColor}15`,
-                  border: `1px solid ${statusColor}28`,
-                }}>
-                {c.status[app.status]}
-              </span>
-            </motion.div>
-          );
-        })}
+                  width: 300,
+                  padding: "2rem",
+                  background: "var(--bg-2)",
+                  border: "1px solid var(--border)",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = `${app.color}50`;
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-8px)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = `0 16px 48px ${app.color}18`;
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                <div className="flex items-start justify-between mb-5">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center"
+                    style={{ background: `${app.color}18`, border: `1px solid ${app.color}28` }}>
+                    <Icon size={22} style={{ color: app.color }} />
+                  </div>
+                  {app.subsidiary && (
+                    <span className="font-inter text-[10px] px-2 py-0.5 rounded-full"
+                      style={{ color: app.color, background: `${app.color}12`, border: `1px solid ${app.color}25` }}>
+                      {c.subsidiary}
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-poppins font-bold text-lg mb-2 text-left"
+                  style={{ color: "var(--fg)" }}>
+                  {app.name}
+                </h3>
+                <p className="font-inter text-sm mb-6 text-left"
+                  style={{ color: "var(--fg-muted)", lineHeight: 1.7 }}>
+                  {app.tagline}
+                </p>
+                <span className="inline-block font-poppins font-semibold text-xs px-3 py-1 rounded-full"
+                  style={{
+                    color: statusColor,
+                    background: `${statusColor}15`,
+                    border: `1px solid ${statusColor}28`,
+                  }}>
+                  {c.status[app.status]}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Modal */}
@@ -188,7 +167,7 @@ export default function EcosystemSection() {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="fixed inset-0 z-40"
-              style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(10px)" }}
+              style={{ background: "rgba(0,0,0,0.72)", backdropFilter: "blur(10px)" }}
               onClick={() => setSelected(null)}
             />
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -203,27 +182,36 @@ export default function EcosystemSection() {
                 onClick={e => e.stopPropagation()}
               >
                 <button onClick={() => setSelected(null)}
-                  className="absolute top-5 right-5 w-8 h-8 rounded-full flex items-center justify-center"
+                  className="absolute top-5 right-5 w-8 h-8 rounded-full flex items-center justify-center transition-opacity hover:opacity-60"
                   style={{ color: "var(--fg-muted)", background: "var(--bg-3)" }}>
                   <X size={14} />
                 </button>
 
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-13 h-13 rounded-2xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: `${selected.color}18`, width: 52, height: 52 }}>
-                    {(() => { const I = catIcon[selected.category]; return <I size={22} style={{ color: selected.color }} />; })()}
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: `${selected.color}18`, border: `1px solid ${selected.color}28` }}>
+                    {(() => { const I = catIcon[selected.category]; return <I size={24} style={{ color: selected.color }} />; })()}
                   </div>
                   <div>
                     <h3 className="font-poppins font-bold text-xl" style={{ color: "var(--fg)" }}>
                       {selected.name}
                     </h3>
-                    <p className="font-inter text-xs mt-1" style={{ color: "var(--fg-muted)" }}>
+                    <p className="font-inter text-sm mt-0.5" style={{ color: "var(--fg-muted)" }}>
                       {c.catLabel[selected.category]}
                     </p>
                   </div>
                 </div>
 
-                <span className="inline-block font-poppins font-semibold text-xs px-3 py-1 rounded-full mb-5"
+                {selected.subsidiary && (
+                  <div className="mb-4">
+                    <span className="font-inter text-xs px-3 py-1 rounded-full"
+                      style={{ color: selected.color, background: `${selected.color}12`, border: `1px solid ${selected.color}25` }}>
+                      {c.subsidiary}
+                    </span>
+                  </div>
+                )}
+
+                <span className="inline-block font-poppins font-semibold text-xs px-3 py-1 rounded-full mb-6"
                   style={{
                     color: c.statusColor[selected.status],
                     background: `${c.statusColor[selected.status]}15`,
@@ -232,19 +220,19 @@ export default function EcosystemSection() {
                   {c.status[selected.status]}
                 </span>
 
-                <p className="font-inter text-sm leading-relaxed mb-7"
-                  style={{ color: "var(--fg-muted)", lineHeight: 1.8 }}>
+                <p className="font-inter text-base leading-relaxed mb-8"
+                  style={{ color: "var(--fg-muted)", lineHeight: 1.85 }}>
                   {selected.description}
                 </p>
 
-                <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-4"
+                <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-5"
                   style={{ color: "var(--accent)" }}>
                   {c.features}
                 </p>
                 <ul className="space-y-3">
                   {selected.features.map(f => (
                     <li key={f} className="flex items-center gap-3">
-                      <Check size={12} style={{ color: selected.color, flexShrink: 0 }} />
+                      <Check size={13} style={{ color: selected.color, flexShrink: 0 }} />
                       <span className="font-inter text-sm" style={{ color: "var(--fg-muted)" }}>{f}</span>
                     </li>
                   ))}
