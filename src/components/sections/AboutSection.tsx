@@ -79,7 +79,7 @@ export default function AboutSection() {
                 key={title}
                 whileHover={{ y: -4, boxShadow: `0 20px 60px ${glow}` }}
                 transition={{ duration: 0.25 }}
-                className="rounded-3xl p-10"
+                className="rounded-3xl p-12"
                 style={{
                   background: "var(--bg)",
                   border: "1px solid var(--border)",
@@ -99,7 +99,7 @@ export default function AboutSection() {
         </div>
 
         {/* Values */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
           {c.values.map(({ icon: Icon, title, body, color }, i) => (
             <motion.div key={title}
               initial={{ opacity: 0, y: 32 }}
@@ -107,7 +107,7 @@ export default function AboutSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.12, duration: 0.6 }}
               whileHover={{ y: -10, boxShadow: `0 24px 64px ${color}28` }}
-              className="rounded-3xl p-10 group"
+              className="rounded-3xl p-12 group"
               style={{
                 background: "var(--bg)",
                 border: "1px solid var(--border)",

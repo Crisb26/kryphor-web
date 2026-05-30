@@ -49,7 +49,7 @@ export default function StatsSection() {
   return (
     <section className="py-24 border-y" style={{ borderColor: "var(--border)", background: "var(--bg)" }}>
       <div className="kl-container">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {items.map(({ value, from, suffix, label }, i) => (
             <motion.div key={label}
               initial={{ opacity: 0, y: 20 }}

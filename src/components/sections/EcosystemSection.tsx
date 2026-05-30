@@ -137,7 +137,7 @@ export default function EcosystemSection() {
         </motion.div>
 
         {/* Main products grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-10">
           {mainProducts.map((p, i) => {
             const Icon = p.icon;
             const status = statusConfig[p.status as keyof typeof statusConfig];
@@ -152,7 +152,7 @@ export default function EcosystemSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.6 }}
-                className="rounded-3xl p-8 flex flex-col group"
+                className="rounded-3xl p-10 flex flex-col group"
                 style={{
                   background: "var(--bg-2)",
                   border: "1px solid var(--border)",

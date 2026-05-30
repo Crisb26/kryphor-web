@@ -11,13 +11,13 @@ PRODUCTOS KRYPHOR LABS:
 - Toca & Ve: Juego educativo interactivo táctil. En desarrollo.
 - ColoLetras: Juego creativo que combina colorear y escritura. En desarrollo.
 
-SUBSIDIARIA - KRYPHORCONNECT (antes XisCriAd / Innoad):
+SUBSIDIARIA - KRYPHORCONNECT:
 KryphorConnect es una subsidiaria de Kryphor Labs especializada en soluciones de conectividad y publicidad digital.
 - KryphorConnect TV: App Android TV / Google TV para gestión de contenido digital en pantallas. Disponible en Play Store y como APK descargable.
   * Compatible con Android TV, Google TV, Fire TV
   * También disponible como APK para dispositivos sin Play Store (se puede instalar via USB o descargar desde la web)
   * La app conecta con el panel de administración de KryphorConnect
-  * Antes se llamaba XisCriAd TV / Innoad TV
+
 - Panel web de administración en kryphorconnect.com (subsidiaria de kryphorlabs.com)
 
 CAPACIDADES EN MODO ADMIN:
