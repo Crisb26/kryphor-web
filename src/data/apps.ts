@@ -31,6 +31,7 @@ export const apps: App[] = [
     color: "#38BDF8",
     icon: "📺",
     subsidiary: "KryphorConnect",
+    apkUrl: "/downloads/kryphorconnect-tv.apk",
     features: [
       "Compatible con Android TV y Google TV",
       "APK descargable (sin necesidad de Play Store)",

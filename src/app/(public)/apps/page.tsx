@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gamepad2, BookOpen, ChevronDown, Check, Wifi } from "lucide-react";
+import { Gamepad2, BookOpen, ChevronDown, Check, Wifi, Download } from "lucide-react";
 import { apps, type App } from "@/data/apps";
 import { useApp } from "@/lib/providers";
 
@@ -21,10 +21,11 @@ const copy = {
       "en-desarrollo": "#38BDF8",
       proximamente:    "#818CF8",
     },
-    features: "Características",
-    catLabel: { Juego: "Videojuego", Espiritual: "Espiritual", Conectividad: "Conectividad" },
-    expand:   "Ver detalles",
-    collapse: "Cerrar",
+    features:  "Características",
+    download:  "Descargar APK",
+    catLabel:  { Juego: "Videojuego", Espiritual: "Espiritual", Conectividad: "Conectividad" },
+    expand:    "Ver detalles",
+    collapse:  "Cerrar",
   },
   en: {
     eyebrow: "Coming Soon",
@@ -41,10 +42,11 @@ const copy = {
       "en-desarrollo": "#38BDF8",
       proximamente:    "#818CF8",
     },
-    features: "Features",
-    catLabel: { Juego: "Video Game", Espiritual: "Spiritual", Conectividad: "Connectivity" },
-    expand:   "Details",
-    collapse: "Close",
+    features:  "Features",
+    download:  "Download APK",
+    catLabel:  { Juego: "Video Game", Espiritual: "Spiritual", Conectividad: "Connectivity" },
+    expand:    "Details",
+    collapse:  "Close",
   },
 };
 
@@ -176,7 +178,7 @@ export default function AppsPage() {
                           style={{ color: "var(--accent)" }}>
                           {c.features}
                         </p>
-                        <div className="flex flex-wrap gap-2.5">
+                        <div className="flex flex-wrap gap-2.5 mb-6">
                           {app.features.map(f => (
                             <span key={f}
                               className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg font-inter"
@@ -186,6 +188,15 @@ export default function AppsPage() {
                             </span>
                           ))}
                         </div>
+                        {app.apkUrl && (
+                          <a href={app.apkUrl} download
+                            onClick={e => e.stopPropagation()}
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-poppins font-semibold text-sm text-white transition-all duration-200 hover:opacity-90"
+                            style={{ background: `linear-gradient(135deg, ${app.color}, ${app.color}aa)` }}>
+                            <Download size={14} />
+                            {c.download}
+                          </a>
+                        )}
                       </div>
                     </motion.div>
                   )}

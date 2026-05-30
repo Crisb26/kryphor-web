@@ -9,8 +9,8 @@ export default function HomePage() {
     <>
       <HeroSection />
       <StatsSection />
-      <AboutSection />
       <EcosystemSection />
+      <AboutSection />
       <ContactSection />
     </>
   );

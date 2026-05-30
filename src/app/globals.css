@@ -114,51 +114,5 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
 }
 .nav-link:hover::after { width: 100%; left: 0; }
 
-/* ── Hero blob animation ───────────────────────────────────── */
-@keyframes blob-drift {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
-  33%       { transform: translate(40px, -40px) scale(1.08); }
-  66%       { transform: translate(-30px, 30px) scale(0.95); }
-}
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  animation: blob-drift var(--blob-duration, 10s) ease-in-out infinite;
-  pointer-events: none;
-}
-
-/* ── Carousel ──────────────────────────────────────────────── */
-.carousel-track { cursor: grab; }
-.carousel-track:active { cursor: grabbing; }
-
-/* ── Netflix ticker ────────────────────────────────────────── */
-@keyframes ticker-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(calc(-100% / 3)); }
-}
-
-/* ── Card hover lift ───────────────────────────────────────── */
-.card-lift {
-  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-}
-.card-lift:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-}
-
-/* ── Gradient border card ──────────────────────────────────── */
-.grad-border {
-  position: relative;
-  border: 1px solid var(--border);
-  transition: border-color 0.3s;
-}
-.grad-border:hover { border-color: transparent; }
-.grad-border:hover::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, var(--accent), var(--accent-b));
-  z-index: -1;
-}
+/* ── Smooth scroll snapping ────────────────────────────────── */
+section { scroll-margin-top: 80px; }
