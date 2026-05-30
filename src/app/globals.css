@@ -20,6 +20,10 @@
   --glow-a:   rgba(56,189,248,0.18);
   --glow-b:   rgba(129,140,248,0.18);
   --card-bg:  rgba(255,255,255,0.03);
+
+  /* Card padding tokens */
+  --card-pad:   2.5rem;   /* 40px — base */
+  --card-pad-lg: 3.5rem;  /* 56px — pantallas grandes */
 }
 
 /* ── Light ─────────────────────────────────────────────────── */
@@ -60,23 +64,45 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--accent-b); border-radius: 99px; }
 
-/* ── Container ─────────────────────────────────────────────── */
+/* ── Container — responsive para todos los dispositivos ───── */
 .kl-container {
   width: 100%;
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
+/* Mobile pequeño (≤ 390px) */
+@media (max-width: 390px) {
+  .kl-container { padding-left: 1rem; padding-right: 1rem; }
+}
+/* Tablet (≥ 640px) */
 @media (min-width: 640px) {
-  .kl-container { padding-left: 2.5rem; padding-right: 2.5rem; }
+  .kl-container { padding-left: 2rem; padding-right: 2rem; }
 }
+/* Desktop (≥ 1024px) */
 @media (min-width: 1024px) {
-  .kl-container { padding-left: 4rem; padding-right: 4rem; }
+  .kl-container { padding-left: 3.5rem; padding-right: 3.5rem; }
 }
+/* Wide (≥ 1280px) */
 @media (min-width: 1280px) {
   .kl-container { padding-left: 5rem; padding-right: 5rem; }
+}
+/* Ultrawide (≥ 1536px) */
+@media (min-width: 1536px) {
+  .kl-container { padding-left: 6rem; padding-right: 6rem; }
+}
+
+/* ── Card base — espacio interno consistente ───────────────── */
+.kl-card {
+  padding: var(--card-pad);
+  border-radius: 1.5rem;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+}
+@media (min-width: 1024px) {
+  .kl-card { padding: var(--card-pad-lg); }
 }
 
 /* ── Gradient text ─────────────────────────────────────────── */
@@ -114,5 +140,20 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
 }
 .nav-link:hover::after { width: 100%; left: 0; }
 
-/* ── Smooth scroll snapping ────────────────────────────────── */
+/* ── Smooth scroll ─────────────────────────────────────────── */
 section { scroll-margin-top: 80px; }
+
+/* ── Mobile: ocultar canvas neural en pantallas pequeñas ───── */
+@media (max-width: 640px) {
+  canvas { opacity: 0.3 !important; }
+}
+
+/* ── Responsive section vertical rhythm ───────────────────── */
+@media (max-width: 768px) {
+  section { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+}
+
+/* ── TV / pantallas grandes ────────────────────────────────── */
+@media (min-width: 1920px) {
+  .kl-container { max-width: 1600px; }
+}
