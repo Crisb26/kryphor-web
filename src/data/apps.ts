@@ -43,14 +43,21 @@ export const apps: App[] = [
   {
     id: "mi-devocionario",
     name: "Mi Devocionario",
-    tagline: "Tu guía espiritual diaria",
+    tagline: "Rosario, novenas y oración diaria",
     description:
-      "Aplicación de devocionales, oraciones y reflexiones espirituales para acompañarte cada día en tu fe.",
+      "App de oración católica con el Santo Rosario completo (4 misterios), 6 novenas con contenido íntegro, plan de oración personalizado, recordatorio diario configurable y modo nocturno. Disponible en español, inglés, portugués, francés y latín.",
     category: "Espiritual",
-    status: "en-desarrollo",
-    color: "#27AE60",
+    status: "proximamente",
+    color: "#D4AF37",
     icon: "🙏",
-    features: ["Devocionales diarios", "Oraciones guiadas", "Versículos personalizados", "Modo sin conexión"],
+    features: [
+      "Santo Rosario completo (4 misterios)",
+      "6 novenas con los 9 días completos",
+      "Plan de oración multi-devoción",
+      "Recordatorio diario configurable",
+      "Modo nocturno y tamaño de texto",
+      "5 idiomas: ES, EN, PT, FR, LA",
+    ],
   },
   {
     id: "vortex",
