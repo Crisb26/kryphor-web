@@ -3,7 +3,7 @@ export interface App {
   name: string;
   tagline: string;
   description: string;
-  category: "Espiritual" | "Juego" | "Conectividad";
+  category: "Espiritual" | "Productividad" | "Conectividad" | "Agrícola" | "Finanzas" | "Bienestar";
   status: "disponible" | "en-desarrollo" | "proximamente";
   playStoreUrl?: string;
   apkUrl?: string;
@@ -23,9 +23,9 @@ export const apps: App[] = [
   {
     id: "kryphor-connect-tv",
     name: "KryphorConnect TV",
-    tagline: "Conectividad digital en tu pantalla",
+    tagline: "Publicidad digital inteligente en tu pantalla",
     description:
-      "App para Android TV y Google TV que gestiona contenido digital en pantallas. Subsidiaria de Kryphor Labs, disponible en Play Store y como APK descargable para TVs sin Play Store.",
+      "App para Android TV y Google TV que convierte cualquier televisor en una pantalla de publicidad digital profesional. Gestiona campañas, programa contenido y monitorea estadísticas en tiempo real desde el panel web.",
     category: "Conectividad",
     status: "disponible",
     color: "#38BDF8",
@@ -35,9 +35,9 @@ export const apps: App[] = [
     features: [
       "Compatible con Android TV y Google TV",
       "APK descargable (sin necesidad de Play Store)",
-      "Instalación vía USB o descarga directa",
-      "Panel de administración web",
-      "Gestión de contenido en tiempo real",
+      "Gestión de campañas en tiempo real",
+      "Programación por horarios y días",
+      "Panel de administración web incluido",
     ],
   },
   {
@@ -45,66 +45,102 @@ export const apps: App[] = [
     name: "Mi Devocionario",
     tagline: "Rosario, novenas y oración diaria",
     description:
-      "App de oración católica con el Santo Rosario completo (4 misterios), 6 novenas con contenido íntegro, plan de oración personalizado, recordatorio diario configurable y modo nocturno. Disponible en español, inglés, portugués, francés y latín.",
+      "App de oración católica con el Santo Rosario completo (4 misterios), novenas con contenido íntegro, plan de oración personalizado, recordatorio diario configurable y modo nocturno. Disponible en 16 idiomas.",
     category: "Espiritual",
     status: "proximamente",
     color: "#D4AF37",
     icon: "🙏",
     features: [
       "Santo Rosario completo (4 misterios)",
-      "6 novenas con los 9 días completos",
+      "Novenas con los 9 días completos",
       "Plan de oración multi-devoción",
       "Recordatorio diario configurable",
-      "Modo nocturno y tamaño de texto",
-      "5 idiomas: ES, EN, PT, FR, LA",
+      "16 idiomas disponibles",
     ],
   },
   {
-    id: "vortex",
-    name: "Vórtex",
-    tagline: "Aventura épica de acción",
+    id: "zenflow",
+    name: "ZenFlow",
+    tagline: "Productividad con bienestar",
     description:
-      "Videojuego de acción y aventura con mecánicas innovadoras, combate fluido y un universo expansivo en 2.5D.",
-    category: "Juego",
+      "App de productividad y bienestar digital que combina gestión de tareas, hábitos y mindfulness en una experiencia fluida y minimalista.",
+    category: "Bienestar",
     status: "en-desarrollo",
-    color: "#E74C3C",
-    icon: "⚔️",
-    features: ["Combate fluido", "Historia profunda", "Mundo abierto", "Gráficos 2.5D"],
+    color: "#34D399",
+    icon: "🌊",
+    features: [
+      "Gestión de tareas y proyectos",
+      "Seguimiento de hábitos diarios",
+      "Sesiones de mindfulness",
+      "Estadísticas de bienestar",
+    ],
   },
   {
-    id: "picaoro",
-    name: "PicaOro",
-    tagline: "Mina, construye, conquista",
+    id: "agrolog",
+    name: "AgroLog",
+    tagline: "Gestión agrícola inteligente",
     description:
-      "Juego de minería y construcción donde acumulas recursos, construyes tu imperio y conquistas nuevos territorios.",
-    category: "Juego",
+      "Plataforma para agricultores y fincas que permite registrar cultivos, controlar insumos, planificar cosechas y generar reportes de producción.",
+    category: "Agrícola",
     status: "en-desarrollo",
-    color: "#F39C12",
-    icon: "⛏️",
-    features: ["Minería estratégica", "Gestión de recursos", "Modo multijugador", "Progresión RPG"],
+    color: "#86EFAC",
+    icon: "🌱",
+    features: [
+      "Registro de cultivos y parcelas",
+      "Control de insumos y costos",
+      "Planificación de cosechas",
+      "Reportes de producción",
+    ],
   },
   {
-    id: "toca-y-ve",
-    name: "Toca & Ve",
-    tagline: "Aprende tocando",
+    id: "taskcamp",
+    name: "TaskCamp",
+    tagline: "Gestión de proyectos para equipos",
     description:
-      "Juego educativo interactivo que convierte el aprendizaje en una experiencia táctil y visual para todas las edades.",
-    category: "Juego",
+      "Herramienta de gestión de proyectos diseñada para equipos pequeños y medianos. Tableros kanban, sprints, seguimiento de tiempo y colaboración en tiempo real.",
+    category: "Productividad",
     status: "en-desarrollo",
-    color: "#2E86AB",
-    icon: "👆",
-    features: ["Interfaz táctil", "Contenido educativo", "Gamificación", "Seguimiento de progreso"],
+    color: "#818CF8",
+    icon: "🏕️",
+    features: [
+      "Tableros kanban",
+      "Gestión de sprints",
+      "Seguimiento de tiempo",
+      "Colaboración en tiempo real",
+    ],
   },
   {
-    id: "coloLetras",
-    name: "ColoLetras",
-    tagline: "Colorea con palabras",
+    id: "microcobros",
+    name: "MicroCobros",
+    tagline: "Gestión de cobros simplificada",
     description:
-      "Juego creativo que combina colorear y escritura para potenciar la creatividad y el aprendizaje del lenguaje.",
-    category: "Juego",
+      "App para pequeños negocios y emprendedores que facilita el seguimiento de cobros, deudas de clientes, recordatorios de pago y reportes financieros básicos.",
+    category: "Finanzas",
     status: "en-desarrollo",
-    color: "#8E44AD",
-    icon: "🎨",
-    features: ["Colorear interactivo", "Aprendizaje de letras", "Múltiples idiomas", "Compartir creaciones"],
+    color: "#FBBF24",
+    icon: "💰",
+    features: [
+      "Registro de clientes y deudas",
+      "Recordatorios de pago automáticos",
+      "Historial de cobros",
+      "Reportes financieros básicos",
+    ],
+  },
+  {
+    id: "lokalio",
+    name: "Lokalio",
+    tagline: "Descubre lo local",
+    description:
+      "Plataforma de descubrimiento de negocios y servicios locales. Conecta a las personas con comercios, restaurantes y servicios de su ciudad de forma rápida y visual.",
+    category: "Productividad",
+    status: "en-desarrollo",
+    color: "#F472B6",
+    icon: "📍",
+    features: [
+      "Búsqueda de negocios locales",
+      "Reseñas y calificaciones",
+      "Mapas integrados",
+      "Promociones y ofertas locales",
+    ],
   },
 ];

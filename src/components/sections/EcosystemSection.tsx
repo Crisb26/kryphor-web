@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight, Bot, Wifi, GraduationCap, Shield, Heart, Gamepad2, BookOpen, Check } from "lucide-react";
+import { ArrowRight, Bot, Wifi, GraduationCap, Shield, Heart, BookOpen, Layers, Check } from "lucide-react";
 import { useApp } from "@/lib/providers";
 
 const copy = {
@@ -13,7 +13,8 @@ const copy = {
     soon: "Próximamente",
     explore: "Explorar",
     learnMore: "Ver todos los productos",
-    games: "Videojuegos",
+    appsTitle: "Apps independientes",
+    appsDesc: "Apps móviles diseñadas para la vida cotidiana: espiritualidad, productividad, finanzas y más.",
     inDevShort: "En desarrollo",
   },
   en: {
@@ -25,7 +26,8 @@ const copy = {
     soon: "Coming Soon",
     explore: "Explore",
     learnMore: "View all products",
-    games: "Video Games",
+    appsTitle: "Independent apps",
+    appsDesc: "Mobile apps designed for everyday life: spirituality, productivity, finances and more.",
     inDevShort: "In development",
   },
 };
@@ -50,10 +52,10 @@ const mainProducts = [
     href: "/connect",
     nameEs: "KryphorConnect",
     nameEn: "KryphorConnect",
-    descEs: "Plataforma de gestión para organizaciones, fundaciones y empresas. Android TV incluida.",
-    descEn: "Management platform for organizations, foundations and companies. Android TV included.",
+    descEs: "Plataforma de publicidad digital inteligente. Gestiona campañas en pantallas Android TV desde un panel web.",
+    descEn: "Intelligent digital advertising platform. Manage campaigns on Android TV screens from a web panel.",
     status: "available",
-    features: { es: ["App Android TV", "APK descargable", "Panel web"], en: ["Android TV app", "Downloadable APK", "Web panel"] },
+    features: { es: ["App Android TV nativa", "APK descargable", "Panel web de campañas"], en: ["Native Android TV app", "Downloadable APK", "Campaign web panel"] },
   },
   {
     id: "academy",
@@ -93,12 +95,13 @@ const mainProducts = [
   },
 ];
 
-const gamesPreview = [
-  { name: "Vórtex",   color: "#E74C3C", icon: Gamepad2 },
-  { name: "PicaOro",  color: "#F39C12", icon: Gamepad2 },
-  { name: "Toca & Ve", color: "#2E86AB", icon: Gamepad2 },
-  { name: "ColoLetras", color: "#8E44AD", icon: Gamepad2 },
-  { name: "Mi Devocionario", color: "#27AE60", icon: BookOpen },
+const appsPreview = [
+  { name: "Mi Devocionario", color: "#D4AF37", icon: BookOpen },
+  { name: "ZenFlow",         color: "#34D399", icon: Layers },
+  { name: "AgroLog",         color: "#86EFAC", icon: Layers },
+  { name: "TaskCamp",        color: "#818CF8", icon: Layers },
+  { name: "MicroCobros",     color: "#FBBF24", icon: Layers },
+  { name: "Lokalio",         color: "#F472B6", icon: Layers },
 ];
 
 const statusConfig = {
@@ -208,7 +211,7 @@ export default function EcosystemSection() {
             );
           })}
 
-          {/* Games card */}
+          {/* Apps card */}
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -219,8 +222,8 @@ export default function EcosystemSection() {
           >
             <div className="flex items-start justify-between mb-6">
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                style={{ background: "rgba(129,140,248,0.1)", border: "1px solid rgba(129,140,248,0.2)" }}>
-                <Gamepad2 size={22} style={{ color: "#818CF8" }} />
+                style={{ background: "rgba(212,175,55,0.1)", border: "1px solid rgba(212,175,55,0.2)" }}>
+                <BookOpen size={22} style={{ color: "#D4AF37" }} />
               </div>
               <span className="font-poppins font-semibold text-xs px-3 py-1 rounded-full"
                 style={{ color: "#38BDF8", background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.2)" }}>
@@ -229,16 +232,14 @@ export default function EcosystemSection() {
             </div>
 
             <h3 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--fg)" }}>
-              {c.games}
+              {c.appsTitle}
             </h3>
             <p className="font-inter text-sm mb-6 flex-1" style={{ color: "var(--fg-muted)", lineHeight: 1.75 }}>
-              {lang === "es"
-                ? "Videojuegos y apps independientes construidos con pasión. Entretenimiento con propósito."
-                : "Independent video games and apps built with passion. Entertainment with purpose."}
+              {c.appsDesc}
             </p>
 
             <div className="flex flex-wrap gap-2">
-              {gamesPreview.map(g => {
+              {appsPreview.map(g => {
                 const G = g.icon;
                 return (
                   <div key={g.name}

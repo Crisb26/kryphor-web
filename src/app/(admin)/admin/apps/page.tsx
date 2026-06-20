@@ -1,7 +1,14 @@
 import { apps, statusLabels } from "@/data/apps";
-import { AppWindow, Gamepad2, BookOpen, Wifi } from "lucide-react";
+import { AppWindow, BookOpen, Wifi, Layers } from "lucide-react";
 
-const catIcon = { Juego: Gamepad2, Espiritual: BookOpen, Conectividad: Wifi };
+const catIcon = {
+  Espiritual: BookOpen,
+  Conectividad: Wifi,
+  Productividad: Layers,
+  Agrícola: Layers,
+  Finanzas: Layers,
+  Bienestar: Layers,
+};
 
 export default function AdminAppsPage() {
   return (

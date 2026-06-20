@@ -1,16 +1,24 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gamepad2, BookOpen, ChevronDown, Check, Wifi, Download } from "lucide-react";
+import { BookOpen, ChevronDown, Check, Wifi, Download, Layers } from "lucide-react";
 import { apps, type App } from "@/data/apps";
 import { useApp } from "@/lib/providers";
 
 const copy = {
   es: {
-    eyebrow: "Próximamente",
+    eyebrow: "Ecosistema",
     title: "Nuestro ecosistema.",
-    sub: "Aplicaciones en desarrollo, construidas para acompañarte cada día.",
-    filters: { Todos: "Todos", Conectividad: "Conectividad", Espiritual: "Espiritual", Juego: "Videojuegos" },
+    sub: "Aplicaciones construidas para acompañarte cada día: espiritualidad, productividad, finanzas y más.",
+    filters: {
+      Todos:        "Todos",
+      Conectividad: "Conectividad",
+      Espiritual:   "Espiritual",
+      Productividad:"Productividad",
+      Bienestar:    "Bienestar",
+      Finanzas:     "Finanzas",
+      Agrícola:     "Agrícola",
+    },
     status: {
       disponible:      "Disponible",
       "en-desarrollo": "En desarrollo",
@@ -23,15 +31,30 @@ const copy = {
     },
     features:  "Características",
     download:  "Descargar APK",
-    catLabel:  { Juego: "Videojuego", Espiritual: "Espiritual", Conectividad: "Conectividad" },
+    catLabel: {
+      Espiritual:   "Espiritual",
+      Conectividad: "Conectividad",
+      Productividad:"Productividad",
+      Bienestar:    "Bienestar",
+      Finanzas:     "Finanzas",
+      Agrícola:     "Agrícola",
+    },
     expand:    "Ver detalles",
     collapse:  "Cerrar",
   },
   en: {
-    eyebrow: "Coming Soon",
+    eyebrow: "Ecosystem",
     title: "Our ecosystem.",
-    sub: "Applications in development, built to accompany you every day.",
-    filters: { Todos: "All", Conectividad: "Connectivity", Espiritual: "Spiritual", Juego: "Video Games" },
+    sub: "Applications built to accompany you every day: spirituality, productivity, finances and more.",
+    filters: {
+      Todos:        "All",
+      Conectividad: "Connectivity",
+      Espiritual:   "Spiritual",
+      Productividad:"Productivity",
+      Bienestar:    "Wellness",
+      Finanzas:     "Finance",
+      Agrícola:     "Agricultural",
+    },
     status: {
       disponible:      "Available",
       "en-desarrollo": "In Development",
@@ -44,19 +67,29 @@ const copy = {
     },
     features:  "Features",
     download:  "Download APK",
-    catLabel:  { Juego: "Video Game", Espiritual: "Spiritual", Conectividad: "Connectivity" },
+    catLabel: {
+      Espiritual:   "Spiritual",
+      Conectividad: "Connectivity",
+      Productividad:"Productivity",
+      Bienestar:    "Wellness",
+      Finanzas:     "Finance",
+      Agrícola:     "Agricultural",
+    },
     expand:    "Details",
     collapse:  "Close",
   },
 };
 
-const categoryIcons: Record<App["category"], typeof Gamepad2> = {
-  Espiritual: BookOpen,
-  Juego: Gamepad2,
+const categoryIcons: Record<App["category"], typeof Layers> = {
+  Espiritual:   BookOpen,
   Conectividad: Wifi,
+  Productividad: Layers,
+  Bienestar:    Layers,
+  Finanzas:     Layers,
+  Agrícola:     Layers,
 };
 
-const filterKeys = ["Todos", "Conectividad", "Juego", "Espiritual"] as const;
+const filterKeys = ["Todos", "Conectividad", "Espiritual", "Productividad", "Bienestar", "Finanzas", "Agrícola"] as const;
 
 export default function AppsPage() {
   const { lang } = useApp();
