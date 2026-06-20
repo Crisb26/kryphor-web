@@ -1,4 +1,4 @@
-export const runtime = "edge";
+
 
 interface PageStat { views: number; lastSeen: string; }
 declare global { var __analytics: Map<string, PageStat> | undefined; }

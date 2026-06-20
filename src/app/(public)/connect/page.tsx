@@ -4,7 +4,7 @@ import { Wifi, Tv, BarChart2, Calendar, Layout, Bell, Download, Check, ArrowRigh
 import { useApp } from "@/lib/providers";
 
 const PANEL_URL = "https://connect.kryphorlabs.com";
-const APK_URL   = "/downloads/kryphorconnect-tv.apk";
+const APK_URL   = "https://github.com/Crisb26/kryphorconnect-tv/releases/download/v1.0.0/kryphorconnect-tv.apk";
 
 const copy = {
   es: {
