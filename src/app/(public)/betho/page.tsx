@@ -24,9 +24,9 @@ const features = [
 
 const demoMessages = [
   { role: "user",  text: "¿Qué es Kryphor Labs?" },
-  { role: "betho", text: "Kryphor Labs es un estudio de desarrollo independiente fundado en Colombia en 2026. Creamos videojuegos, apps y experiencias digitales con propósito real." },
-  { role: "user",  text: "¿Cuáles son sus apps?" },
-  { role: "betho", text: "Tenemos Mi Devocionario, Vórtex, PicaOro, Toca & Ve, ColoLetras y KryphorConnect TV. Todas en desarrollo activo." },
+  { role: "betho", text: "Kryphor Labs es un estudio tecnológico independiente fundado en Colombia en 2026. Creamos apps, plataformas y experiencias digitales con propósito real." },
+  { role: "user",  text: "¿Cuáles son sus productos?" },
+  { role: "betho", text: "El ecosistema incluye KryphorConnect (publicidad digital), Mi Devocionario, ZenFlow, AgroLog, TaskCamp, MicroCobros y Lokalio, entre otros." },
 ];
 
 export default function BethoPage() {

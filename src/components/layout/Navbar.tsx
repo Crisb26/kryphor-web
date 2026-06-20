@@ -1,12 +1,11 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon, Globe, ChevronDown, Bot, Wifi, GraduationCap, Shield, Heart, ArrowRight } from "lucide-react";
+import { Menu, X, Sun, Moon, Globe, ChevronDown, Wifi, GraduationCap, Shield, Heart } from "lucide-react";
 import { useApp } from "@/lib/providers";
 
 const products = [
-  { id: "betho",    icon: Bot,           color: "#818CF8", href: "/betho",    labelEs: "Betho AI",          labelEn: "Betho AI",          descEs: "Asistente de inteligencia artificial",  descEn: "Artificial intelligence assistant" },
-  { id: "connect",  icon: Wifi,          color: "#38BDF8", href: "/connect",  labelEs: "KryphorConnect",    labelEn: "KryphorConnect",    descEs: "Plataforma de gestión para organizaciones", descEn: "Management platform for organizations" },
+  { id: "connect",  icon: Wifi,          color: "#38BDF8", href: "/connect",  labelEs: "KryphorConnect",    labelEn: "KryphorConnect",    descEs: "Publicidad digital para pantallas Android TV", descEn: "Digital advertising for Android TV screens" },
   { id: "academy",  icon: GraduationCap, color: "#34D399", href: "/academy",  labelEs: "Kryphor Academy",   labelEn: "Kryphor Academy",   descEs: "Cursos y certificaciones tecnológicas",  descEn: "Tech courses and certifications" },
   { id: "security", icon: Shield,        color: "#F59E0B", href: "/security", labelEs: "Kryphor Security",  labelEn: "Kryphor Security",  descEs: "Auditorías y monitoreo de seguridad",   descEn: "Security audits and monitoring" },
   { id: "health",   icon: Heart,         color: "#F472B6", href: "/health",   labelEs: "Kryphor Health",    labelEn: "Kryphor Health",    descEs: "Bienestar digital y productividad",     descEn: "Digital wellness and productivity" },
@@ -161,10 +160,10 @@ export default function Navbar() {
             <CtrlBtn onClick={toggleTheme} title={theme === "dark" ? "Modo claro" : "Dark mode"}>
               {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
             </CtrlBtn>
-            <a href="/betho"
+            <a href="/connect"
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-poppins font-semibold transition-all duration-200 hover:scale-[1.04]"
-              style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-b))", color: "#fff" }}>
-              <Bot size={14} /> Betho AI
+              style={{ background: "linear-gradient(135deg, #38BDF8, #818CF8)", color: "#fff" }}>
+              <Wifi size={14} /> KryphorConnect
             </a>
           </div>
 
@@ -223,10 +222,10 @@ export default function Navbar() {
                   <Globe size={14} /> {lang === "es" ? "English" : "Español"}
                 </button>
               </div>
-              <a href="/betho" onClick={() => setOpen(false)}
+              <a href="/connect" onClick={() => setOpen(false)}
                 className="flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-poppins font-semibold text-white mt-2"
-                style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-b))" }}>
-                <Bot size={14} /> Betho AI
+                style={{ background: "linear-gradient(135deg, #38BDF8, #818CF8)" }}>
+                <Wifi size={14} /> KryphorConnect
               </a>
             </div>
           </motion.div>
