@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Bot } from "lucide-react";
+import { ArrowRight, Wifi } from "lucide-react";
 import { useApp } from "@/lib/providers";
 
 const copy = {
@@ -11,7 +11,7 @@ const copy = {
     h1b: "para el futuro.",
     sub: "Creamos inteligencia artificial, plataformas digitales y soluciones tecnológicas que ayudan a personas y organizaciones a crecer.",
     cta1: "Explorar Ecosistema",
-    cta2: "Conocer Betho AI",
+    cta2: "Ver KryphorConnect",
     scrollHint: "Desplázate para explorar",
   },
   en: {
@@ -20,7 +20,7 @@ const copy = {
     h1b: "for the future.",
     sub: "We create artificial intelligence, digital platforms and technological solutions that help people and organizations grow.",
     cta1: "Explore Ecosystem",
-    cta2: "Meet Betho AI",
+    cta2: "See KryphorConnect",
     scrollHint: "Scroll to explore",
   },
 };
@@ -207,7 +207,7 @@ export default function HeroSection() {
             }}>
             {c.cta1} <ArrowRight size={16} />
           </a>
-          <a href="/betho"
+          <a href="/connect"
             className="inline-flex items-center gap-2.5 px-9 py-4 rounded-full font-poppins font-semibold transition-all duration-200 hover:scale-[1.04]"
             style={{
               fontSize: "clamp(13px, 1.2vw, 15px)",
@@ -218,7 +218,7 @@ export default function HeroSection() {
             onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "var(--fg)"}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "var(--fg-muted)"}
           >
-            <Bot size={16} style={{ color: "var(--accent-b)" }} />
+            <Wifi size={16} style={{ color: "#38BDF8" }} />
             {c.cta2}
           </a>
         </motion.div>
