@@ -49,7 +49,7 @@ const mainProducts = [
     id: "connect",
     icon: Wifi,
     color: "#38BDF8",
-    href: "/connect",
+    href: "https://connect.kryphorlabs.com",
     nameEs: "KryphorConnect",
     nameEn: "KryphorConnect",
     descEs: "Plataforma de publicidad digital inteligente. Gestiona campañas en pantallas Android TV desde un panel web.",

@@ -207,7 +207,7 @@ export default function HeroSection() {
             }}>
             {c.cta1} <ArrowRight size={16} />
           </a>
-          <a href="/connect"
+          <a href="https://connect.kryphorlabs.com"
             className="inline-flex items-center gap-2.5 px-9 py-4 rounded-full font-poppins font-semibold transition-all duration-200 hover:scale-[1.04]"
             style={{
               fontSize: "clamp(13px, 1.2vw, 15px)",
