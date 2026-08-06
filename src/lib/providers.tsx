@@ -2,20 +2,18 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { usePageView } from "@/lib/usePageView";
 
-export type Theme = "dark" | "light";
+export type Theme = "light";
 export type Lang = "es" | "en";
 
 interface AppCtx {
   theme: Theme;
   lang: Lang;
-  toggleTheme: () => void;
   toggleLang: () => void;
 }
 
 const AppContext = createContext<AppCtx>({
-  theme: "dark",
+  theme: "light",
   lang: "es",
-  toggleTheme: () => {},
   toggleLang: () => {},
 });
 
@@ -25,27 +23,16 @@ function PageViewTracker() {
 }
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark");
   const [lang, setLang] = useState<Lang>("es");
+  const theme: Theme = "light";
 
   useEffect(() => {
+    document.documentElement.setAttribute("data-theme", "light");
     try {
-      const t = localStorage.getItem("kl-theme") as Theme;
-      if (t === "light" || t === "dark") {
-        setTheme(t);
-        document.documentElement.setAttribute("data-theme", t);
-      }
       const l = localStorage.getItem("kl-lang") as Lang;
       if (l === "es" || l === "en") setLang(l);
     } catch {}
   }, []);
-
-  const toggleTheme = () => {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    try { localStorage.setItem("kl-theme", next); } catch {}
-  };
 
   const toggleLang = () => {
     const next: Lang = lang === "es" ? "en" : "es";
@@ -54,7 +41,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AppContext.Provider value={{ theme, lang, toggleTheme, toggleLang }}>
+    <AppContext.Provider value={{ theme, lang, toggleLang }}>
       <PageViewTracker />
       {children}
     </AppContext.Provider>

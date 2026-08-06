@@ -80,7 +80,7 @@ function NeuralCanvas() {
         // node dot
         ctx.beginPath();
         ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
-        ctx.fillStyle = i % 3 === 0 ? "rgba(129,140,248,0.7)" : "rgba(56,189,248,0.65)";
+        ctx.fillStyle = i % 3 === 0 ? "rgba(124,127,224,0.55)" : "rgba(79,168,216,0.5)";
         ctx.fill();
 
         // connections
@@ -90,11 +90,11 @@ function NeuralCanvas() {
           const dy = a.y - b.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 130) {
-            const alpha = (1 - dist / 130) * 0.22;
+            const alpha = (1 - dist / 130) * 0.16;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(56,189,248,${alpha})`;
+            ctx.strokeStyle = `rgba(79,168,216,${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
@@ -132,12 +132,6 @@ export default function HeroSection() {
       {/* Neural canvas */}
       <NeuralCanvas />
 
-      {/* Radial glow center */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 65% 55% at 50% 45%, var(--glow-b), transparent 70%)" }} />
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 40% 35% at 50% 45%, var(--glow-a), transparent 65%)" }} />
-
       {/* Content */}
       <div className="relative z-10 kl-container flex flex-col items-center text-center py-44">
 
@@ -163,7 +157,7 @@ export default function HeroSection() {
           <img
             src={theme === "light" ? "/logos/kryphor_logo_light.png" : "/logos/kryphor_logo_transparent.png"}
             alt="Kryphor Labs"
-            className="h-20 sm:h-28 lg:h-36 xl:h-44 w-auto object-contain mx-auto"
+            className="h-32 sm:h-44 lg:h-56 xl:h-64 w-auto object-contain mx-auto"
           />
         </motion.div>
 
@@ -199,7 +193,7 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row items-center gap-4"
         >
           <a href="/apps"
-            className="inline-flex items-center gap-3 px-9 py-4 rounded-full font-poppins font-semibold text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.04] active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-3 px-11 py-5 rounded-full font-poppins font-semibold text-white whitespace-nowrap transition-all duration-200 hover:opacity-90 hover:scale-[1.04] active:scale-[0.98]"
             style={{
               fontSize: "clamp(13px, 1.2vw, 15px)",
               background: "linear-gradient(135deg, var(--accent), var(--accent-b))",
@@ -208,7 +202,7 @@ export default function HeroSection() {
             {c.cta1} <ArrowRight size={16} />
           </a>
           <a href="https://connect.kryphorlabs.com"
-            className="inline-flex items-center gap-2.5 px-9 py-4 rounded-full font-poppins font-semibold transition-all duration-200 hover:scale-[1.04]"
+            className="inline-flex items-center justify-center gap-2.5 px-11 py-5 rounded-full font-poppins font-semibold whitespace-nowrap transition-all duration-200 hover:scale-[1.04]"
             style={{
               fontSize: "clamp(13px, 1.2vw, 15px)",
               color: "var(--fg-muted)",
@@ -218,7 +212,7 @@ export default function HeroSection() {
             onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "var(--fg)"}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "var(--fg-muted)"}
           >
-            <Wifi size={16} style={{ color: "#38BDF8" }} />
+            <Wifi size={16} style={{ color: "#4FA8D8" }} />
             {c.cta2}
           </a>
         </motion.div>

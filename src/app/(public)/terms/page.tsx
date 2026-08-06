@@ -6,25 +6,25 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen pt-24 pb-16" style={{ background: "var(--background)" }}>
+    <div className="min-h-screen pt-24 pb-16" style={{ background: "var(--bg)" }}>
       <div className="max-w-4xl mx-auto px-6 sm:px-10 lg:px-14">
         <div className="mb-10">
-          <h1 className="font-poppins font-bold text-4xl mb-3" style={{ color: "var(--foreground)" }}>
+          <h1 className="font-poppins font-bold text-4xl mb-3" style={{ color: "var(--fg)" }}>
             Términos de Servicio
           </h1>
-          <p className="font-inter text-sm" style={{ color: "var(--muted-clr)" }}>
+          <p className="font-inter text-sm" style={{ color: "var(--fg-muted)" }}>
             Última actualización: 20 de mayo de 2026
           </p>
-          <p className="font-inter text-sm" style={{ color: "var(--muted-clr)" }}>
+          <p className="font-inter text-sm" style={{ color: "var(--fg-muted)" }}>
             kryphorlabs.com
           </p>
         </div>
 
         <div className="glass rounded-3xl p-8 sm:p-10 space-y-8 font-inter leading-relaxed"
-          style={{ color: "var(--muted-clr)" }}>
+          style={{ color: "var(--fg-muted)" }}>
 
           <section>
-            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--foreground)" }}>
+            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--fg)" }}>
               1. Aceptación de los términos
             </h2>
             <p>
@@ -34,7 +34,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--foreground)" }}>
+            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--fg)" }}>
               2. Uso aceptable
             </h2>
             <p className="mb-3">Te comprometes a usar nuestros servicios solo para fines legales:</p>
@@ -47,7 +47,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--foreground)" }}>
+            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--fg)" }}>
               3. Propiedad intelectual
             </h2>
             <p>
@@ -58,7 +58,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--foreground)" }}>
+            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--fg)" }}>
               4. Limitación de responsabilidad
             </h2>
             <p>
@@ -69,7 +69,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--foreground)" }}>
+            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--fg)" }}>
               5. Modificaciones
             </h2>
             <p>
@@ -79,7 +79,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--foreground)" }}>
+            <h2 className="font-poppins font-bold text-xl mb-3" style={{ color: "var(--fg)" }}>
               6. Contacto
             </h2>
             <p>

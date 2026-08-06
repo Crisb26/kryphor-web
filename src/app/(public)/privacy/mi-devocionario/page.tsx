@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function PrivacidadMiDevocionarioPage() {
   return (
-    <div className="min-h-screen pt-24 pb-16" style={{ background: "var(--background)" }}>
+    <div className="min-h-screen pt-24 pb-16" style={{ background: "var(--bg)" }}>
       <div className="max-w-4xl mx-auto px-6 sm:px-10 lg:px-14">
 
         <div className="mb-10">
@@ -17,29 +17,29 @@ export default function PrivacidadMiDevocionarioPage() {
             Kryphor Labs
           </p>
           <h1 className="font-poppins font-bold text-4xl mb-3"
-            style={{ color: "var(--foreground)" }}>
+            style={{ color: "var(--fg)" }}>
             Política de Privacidad
           </h1>
           <p className="font-poppins font-semibold text-xl mb-3"
-            style={{ color: "var(--foreground)" }}>
+            style={{ color: "var(--fg)" }}>
             Mi Devocionario
           </p>
-          <p className="font-inter text-sm" style={{ color: "var(--muted-clr)" }}>
+          <p className="font-inter text-sm" style={{ color: "var(--fg-muted)" }}>
             Última actualización: mayo de 2026
           </p>
         </div>
 
         <div
           className="glass rounded-3xl p-8 sm:p-10 space-y-8 font-inter leading-relaxed"
-          style={{ color: "var(--muted-clr)" }}
+          style={{ color: "var(--fg-muted)" }}
         >
           <section>
             <h2 className="font-poppins font-bold text-xl mb-3"
-              style={{ color: "var(--foreground)" }}>
+              style={{ color: "var(--fg)" }}>
               1. Información que recopilamos
             </h2>
             <p className="mb-3">
-              Mi Devocionario <strong style={{ color: "var(--foreground)" }}>no recopila ni transmite información personal identificable</strong> a servidores externos.
+              Mi Devocionario <strong style={{ color: "var(--fg)" }}>no recopila ni transmite información personal identificable</strong> a servidores externos.
             </p>
             <p className="mb-3">La app almacena localmente en tu dispositivo:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
@@ -55,11 +55,11 @@ export default function PrivacidadMiDevocionarioPage() {
 
           <section>
             <h2 className="font-poppins font-bold text-xl mb-3"
-              style={{ color: "var(--foreground)" }}>
+              style={{ color: "var(--fg)" }}>
               2. Publicidad (Google AdMob)
             </h2>
             <p className="mb-3">
-              Mi Devocionario muestra anuncios proporcionados por <strong style={{ color: "var(--foreground)" }}>Google AdMob</strong> para mantenerse gratuita.
+              Mi Devocionario muestra anuncios proporcionados por <strong style={{ color: "var(--fg)" }}>Google AdMob</strong> para mantenerse gratuita.
             </p>
             <p className="mb-3">AdMob puede recopilar y usar datos no personales como:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
@@ -69,7 +69,7 @@ export default function PrivacidadMiDevocionarioPage() {
             </ul>
             <p className="mt-3">
               Puedes desactivar los anuncios personalizados en{" "}
-              <strong style={{ color: "var(--foreground)" }}>Ajustes del dispositivo → Google → Anuncios</strong>.
+              <strong style={{ color: "var(--fg)" }}>Ajustes del dispositivo → Google → Anuncios</strong>.
               Consulta la política de Google en{" "}
               <a
                 href="https://policies.google.com/privacy"
@@ -85,12 +85,12 @@ export default function PrivacidadMiDevocionarioPage() {
 
           <section>
             <h2 className="font-poppins font-bold text-xl mb-3"
-              style={{ color: "var(--foreground)" }}>
+              style={{ color: "var(--fg)" }}>
               3. Notificaciones
             </h2>
             <p>
               Si activas el recordatorio diario de oración, la app programa una{" "}
-              <strong style={{ color: "var(--foreground)" }}>notificación local</strong> en tu
+              <strong style={{ color: "var(--fg)" }}>notificación local</strong> en tu
               dispositivo a la hora que elijas. No se envía ningún dato a servidores externos para
               este fin.
             </p>
@@ -98,24 +98,24 @@ export default function PrivacidadMiDevocionarioPage() {
 
           <section>
             <h2 className="font-poppins font-bold text-xl mb-3"
-              style={{ color: "var(--foreground)" }}>
+              style={{ color: "var(--fg)" }}>
               4. Permisos de la aplicación
             </h2>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>
-                <strong style={{ color: "var(--foreground)" }}>INTERNET</strong> — necesario para
+                <strong style={{ color: "var(--fg)" }}>INTERNET</strong> — necesario para
                 mostrar publicidad de AdMob
               </li>
               <li>
-                <strong style={{ color: "var(--foreground)" }}>POST_NOTIFICATIONS</strong> — para
+                <strong style={{ color: "var(--fg)" }}>POST_NOTIFICATIONS</strong> — para
                 enviar el recordatorio diario de oración
               </li>
               <li>
-                <strong style={{ color: "var(--foreground)" }}>RECEIVE_BOOT_COMPLETED</strong> —
+                <strong style={{ color: "var(--fg)" }}>RECEIVE_BOOT_COMPLETED</strong> —
                 para reprogramar el recordatorio tras reiniciar el dispositivo
               </li>
               <li>
-                <strong style={{ color: "var(--foreground)" }}>SCHEDULE_EXACT_ALARM</strong> —
+                <strong style={{ color: "var(--fg)" }}>SCHEDULE_EXACT_ALARM</strong> —
                 para que la notificación llegue exactamente a la hora elegida por el usuario
               </li>
             </ul>
@@ -123,7 +123,7 @@ export default function PrivacidadMiDevocionarioPage() {
 
           <section>
             <h2 className="font-poppins font-bold text-xl mb-3"
-              style={{ color: "var(--foreground)" }}>
+              style={{ color: "var(--fg)" }}>
               5. Menores de edad
             </h2>
             <p>
@@ -135,13 +135,13 @@ export default function PrivacidadMiDevocionarioPage() {
 
           <section>
             <h2 className="font-poppins font-bold text-xl mb-3"
-              style={{ color: "var(--foreground)" }}>
+              style={{ color: "var(--fg)" }}>
               6. Derechos sobre tus datos
             </h2>
             <p className="mb-3">
               Dado que los datos se almacenan localmente en tu dispositivo, puedes eliminarlos en
               cualquier momento desde:{" "}
-              <strong style={{ color: "var(--foreground)" }}>
+              <strong style={{ color: "var(--fg)" }}>
                 Configuración → Datos → Restablecer progreso
               </strong>{" "}
               dentro de la app, o desinstalando la aplicación.
@@ -160,7 +160,7 @@ export default function PrivacidadMiDevocionarioPage() {
 
           <section>
             <h2 className="font-poppins font-bold text-xl mb-3"
-              style={{ color: "var(--foreground)" }}>
+              style={{ color: "var(--fg)" }}>
               7. Cambios a esta política
             </h2>
             <p>
@@ -171,12 +171,12 @@ export default function PrivacidadMiDevocionarioPage() {
 
           <section>
             <h2 className="font-poppins font-bold text-xl mb-3"
-              style={{ color: "var(--foreground)" }}>
+              style={{ color: "var(--fg)" }}>
               8. Contacto
             </h2>
             <p>
               Desarrollado por{" "}
-              <strong style={{ color: "var(--foreground)" }}>Kryphor Labs</strong>
+              <strong style={{ color: "var(--fg)" }}>Kryphor Labs</strong>
               . Para preguntas sobre privacidad:{" "}
               <a
                 href="mailto:kryphorlabs@gmail.com"

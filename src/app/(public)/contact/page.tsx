@@ -87,7 +87,7 @@ export default function ContactPage() {
           </h2>
           <p className="font-inter text-base mb-8" style={{ color: "var(--fg-muted)" }}>{c.successSub}</p>
           <a href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-poppins font-semibold text-white text-sm"
+            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-poppins font-semibold text-white text-sm"
             style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-b))" }}>
             <ArrowLeft size={15} /> {c.backHome}
           </a>
@@ -133,13 +133,13 @@ export default function ContactPage() {
               { icon: Mail, label: c.emailLabel, value: "kryphorlabs@gmail.com", color: "var(--accent)" },
               { icon: MapPin, label: c.locationLabel, value: c.location, color: "var(--accent-b)" },
             ].map(({ icon: Icon, label, value, color }) => (
-              <div key={label} className="rounded-2xl p-6"
+              <div key={label} className="rounded-2xl p-8"
                 style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4"
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
                   style={{ background: `${color}15` }}>
-                  <Icon size={17} style={{ color }} />
+                  <Icon size={18} style={{ color }} />
                 </div>
-                <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-1.5"
+                <p className="font-poppins font-semibold text-xs tracking-widest uppercase mb-2"
                   style={{ color: "var(--fg-muted)" }}>
                   {label}
                 </p>
@@ -154,23 +154,23 @@ export default function ContactPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             onSubmit={submit}
-            className="lg:col-span-2 rounded-3xl p-8 sm:p-10 space-y-6"
+            className="lg:col-span-2 rounded-3xl p-10 sm:p-12 lg:p-14 space-y-7"
             style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
                 { key: "name", label: c.name, ph: c.namePh, type: "text" },
                 { key: "email", label: c.email, ph: c.emailPh, type: "email" },
               ].map(({ key, label, ph, type }) => (
                 <div key={key}>
-                  <label className="block font-poppins font-semibold text-xs tracking-widest uppercase mb-2.5"
+                  <label className="block font-poppins font-semibold text-xs tracking-widest uppercase mb-3"
                     style={{ color: "var(--fg-muted)" }}>
                     {label}
                   </label>
                   <input required type={type} value={form[key as keyof typeof form]}
                     onChange={e => setForm({ ...form, [key]: e.target.value })}
                     placeholder={ph}
-                    className="w-full rounded-xl px-4 py-3.5 font-inter text-sm outline-none transition-all duration-200"
+                    className="w-full rounded-xl px-5 py-4 font-inter text-sm outline-none transition-all duration-200"
                     style={inputStyle}
                     onFocus={e => (e.currentTarget.style.borderColor = "var(--accent)")}
                     onBlur={e => (e.currentTarget.style.borderColor = "var(--border)")}
@@ -180,14 +180,14 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <label className="block font-poppins font-semibold text-xs tracking-widest uppercase mb-2.5"
+              <label className="block font-poppins font-semibold text-xs tracking-widest uppercase mb-3"
                 style={{ color: "var(--fg-muted)" }}>
                 {c.subject}
               </label>
               <input required value={form.subject}
                 onChange={e => setForm({ ...form, subject: e.target.value })}
                 placeholder={c.subjectPh}
-                className="w-full rounded-xl px-4 py-3.5 font-inter text-sm outline-none transition-all duration-200"
+                className="w-full rounded-xl px-5 py-4 font-inter text-sm outline-none transition-all duration-200"
                 style={inputStyle}
                 onFocus={e => (e.currentTarget.style.borderColor = "var(--accent)")}
                 onBlur={e => (e.currentTarget.style.borderColor = "var(--border)")}
@@ -195,14 +195,14 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <label className="block font-poppins font-semibold text-xs tracking-widest uppercase mb-2.5"
+              <label className="block font-poppins font-semibold text-xs tracking-widest uppercase mb-3"
                 style={{ color: "var(--fg-muted)" }}>
                 {c.message}
               </label>
               <textarea required rows={5} value={form.message}
                 onChange={e => setForm({ ...form, message: e.target.value })}
                 placeholder={c.messagePh}
-                className="w-full rounded-xl px-4 py-3.5 font-inter text-sm outline-none transition-all duration-200 resize-none"
+                className="w-full rounded-xl px-5 py-4 font-inter text-sm outline-none transition-all duration-200 resize-none"
                 style={inputStyle}
                 onFocus={e => (e.currentTarget.style.borderColor = "var(--accent)")}
                 onBlur={e => (e.currentTarget.style.borderColor = "var(--border)")}
@@ -220,7 +220,7 @@ export default function ContactPage() {
             </AnimatePresence>
 
             <button type="submit" disabled={state === "loading"}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-poppins font-semibold text-sm text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.02] disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2.5 px-10 py-5 rounded-xl font-poppins font-semibold text-sm text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.02] disabled:opacity-50"
               style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-b))" }}>
               <Send size={16} />
               {state === "loading" ? c.sending : c.send}

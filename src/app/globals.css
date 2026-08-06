@@ -6,58 +6,48 @@
   --font-inter:   'Inter',   sans-serif;
 }
 
-/* ── Dark (default) ────────────────────────────────────────── */
-:root, [data-theme="dark"] {
-  --bg:       #05050A;
-  --bg-2:     #0C0C14;
-  --bg-3:     #121220;
-  --fg:       #F2F2F8;
-  --fg-muted: #636380;
-  --border:   rgba(255,255,255,0.07);
-  --glass:    rgba(12,12,20,0.88);
-  --accent:   #38BDF8;
-  --accent-b: #818CF8;
-  --glow-a:   rgba(56,189,248,0.18);
-  --glow-b:   rgba(129,140,248,0.18);
-  --card-bg:  rgba(255,255,255,0.03);
+/* ── Tema unico: claro ─────────────────────────────────────── */
+:root {
+  --bg:       #FFFFFF;
+  --bg-2:     #F7F7FB;
+  --bg-3:     #EFEFF5;
+  --fg:       #0A0A14;
+  --fg-muted: #5A5A72;
+  --border:   rgba(0,0,0,0.09);
+  --glass:    rgba(255,255,255,0.9);
+  --accent:   #0284C7;
+  --accent-b: #6366F1;
+  --glow-a:   rgba(2,132,199,0.10);
+  --glow-b:   rgba(99,102,241,0.10);
+  --card-bg:  rgba(0,0,0,0.02);
 
   /* Card padding tokens */
   --card-pad:   2.5rem;   /* 40px — base */
   --card-pad-lg: 3.5rem;  /* 56px — pantallas grandes */
 }
 
-/* ── Light ─────────────────────────────────────────────────── */
-[data-theme="light"] {
-  --bg:       #F4F4FA;
-  --bg-2:     #EAEAF2;
-  --bg-3:     #E0E0EB;
-  --fg:       #080812;
-  --fg-muted: #5A5A72;
-  --border:   rgba(0,0,0,0.08);
-  --glass:    rgba(255,255,255,0.85);
-  --accent:   #0284C7;
-  --accent-b: #6366F1;
-  --glow-a:   rgba(2,132,199,0.12);
-  --glow-b:   rgba(99,102,241,0.12);
-  --card-bg:  rgba(0,0,0,0.02);
-}
-
 /* ── Reset ─────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+/* Todo va dentro de @layer base para que las utilidades de Tailwind
+   (p-*, px-*, py-*, m-*, space-y-*, etc.) puedan sobreescribirlo.
+   Sin @layer, este reset le gana a CUALQUIER clase de Tailwind sin
+   importar la especificidad — por eso el padding no se veía. */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: 'Inter', sans-serif;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background 0.25s, color 0.25s;
-  overflow-x: hidden;
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background 0.25s, color 0.25s;
+    overflow-x: hidden;
+  }
+
+  h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
 }
-
-h1,h2,h3,h4,h5,h6 { font-family: 'Poppins', sans-serif; }
 
 /* ── Scrollbar ─────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 3px; }
